@@ -8,10 +8,12 @@ namespace RecInfo.Game.Pingpong.Ball
         public bool isPlayer1;
         public float speed;
         public Rigidbody2D rb;
+        public Vector3 StartPosition;
+        public Transform player1;
+        public Transform player2;
 
         private float movement;
-
-        public Vector3 StartPosition;
+        private Touch touch;
 
         private void Start()
         {
@@ -21,15 +23,33 @@ namespace RecInfo.Game.Pingpong.Ball
         // Update is called once per frame
         void Update()
         {
+
             if (isPlayer1)
             {
-                movement = Input.GetAxis("Vertical");
+                movement = Input.GetAxisRaw("Vertical");
+                rb.velocity = new Vector2(rb.velocity.y, movement * speed);
             }
+
             else
             {
-                movement = Input.GetAxis("Vertical2");
+                movement = Input.GetAxisRaw("Vertical2");
+                rb.velocity = new Vector2(rb.velocity.y, movement * speed);
             }
-            rb.velocity = new Vector2(rb.velocity.x, movement * speed);
+
+            if (Input.touchCount > 0)
+            {
+                touch = Input.GetTouch(0);
+
+                if (touch.phase == TouchPhase.Moved && isPlayer1)
+                {
+                    player1.position = new Vector2(player1.position.x, player1.position.y + touch.deltaPosition.y * 1.2f * Time.deltaTime);
+                }
+                else
+                {
+                    touch = Input.GetTouch(0);
+                    player2.position = new Vector2(player2.position.x, player2.position.y + touch.deltaPosition.y * 1.2f * Time.deltaTime);
+                }
+            }
         }
 
         public void Reset()
