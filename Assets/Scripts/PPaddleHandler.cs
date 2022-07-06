@@ -6,7 +6,7 @@ namespace RecInfo.Game.Pingpong.Ball
     public class PPaddleHandler : MonoBehaviour
     {
         public bool isPlayer1;
-        private float speed;
+        [SerializeField] float speed;
         public Rigidbody2D rb;
         public Vector3 StartPosition;
         public Transform player1;
@@ -14,6 +14,7 @@ namespace RecInfo.Game.Pingpong.Ball
 
         private float movement;
         private Touch touch;
+        [SerializeField] float touchspeed;
 
         private void Start()
         {
@@ -37,18 +38,20 @@ namespace RecInfo.Game.Pingpong.Ball
 
             if (Input.touchCount > 0)
             {
-                touch = Input.GetTouch(0);
-                if (touch.position.x < Screen.width / 2) 
+                for (int i = 0; i <= Input.touches.Length; i++)
                 {
-                    touch = Input.GetTouch(0);
-                    player1.position = new Vector2(player1.position.x, player1.position.y + touch.deltaPosition.y * 0.2f * Time.deltaTime);
+                    touch = Input.touches[i];
+                    if (touch.position.x < Screen.width / 2)
+                    {
+                        player1.position = new Vector2(player1.position.x, player1.position.y + touch.deltaPosition.y * touchspeed * Time.deltaTime);
+                    }
+
+                    if (touch.position.x > Screen.width / 2)
+                    {
+                        player2.position = new Vector2(player2.position.x, player2.position.y + touch.deltaPosition.y * touchspeed * Time.deltaTime);
+                    }
                 }
 
-                else
-                {
-                    touch = Input.GetTouch(0);
-                    player2.position = new Vector2(player2.position.x, player2.position.y + touch.deltaPosition.y * 0.2f * Time.deltaTime);
-                }
             }
         }
 
@@ -57,6 +60,23 @@ namespace RecInfo.Game.Pingpong.Ball
             rb.velocity = Vector2.zero;
             transform.position = StartPosition;
         }
-
     }
 }
+
+        //if (Input.touchCount > 0)
+        //{
+        //    touch = Input.GetTouch(0);
+        //    if (touch.position.x < Screen.width / 2 ) 
+        //    {
+        //        player1.position = new Vector2(player1.position.x, player1.position.y + touch.deltaPosition.y * touchspeed * Time.deltaTime);
+        //    }
+
+        //    if(touch.position.x > Screen.width / 2)
+        //    {
+        //      //  touch = Input.GetTouch(0);
+        //        player2.position = new Vector2(player2.position.x, player2.position.y + touch.deltaPosition.y * touchspeed * Time.deltaTime);
+        //    }
+        //}
+
+    
+
