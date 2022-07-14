@@ -62,7 +62,6 @@ GameObject:
   - component: {fileID: 3301667143047991286}
   - component: {fileID: 3301667143047991287}
   - component: {fileID: 3301667143047991285}
-  - component: {fileID: 3301667144813427357}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Untagged
@@ -182,22 +181,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3301667144813427357
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3301667143047991273}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4ee7732fe0014a44ae16194847cc04e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isPlayer1: 0
-  speed: 10
-  rb: {fileID: 3301667144449382665}
-  StartPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &3301667143199905551
 GameObject:
   m_ObjectHideFlags: 0
@@ -593,7 +576,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer1Goal: 1
-  PlayerPaddle: {fileID: 3301667144813427357}
+  PlayerPaddle: {fileID: 0}
   ball: {fileID: 3301667143770473080}
 --- !u!1 &3301667144449382667
 GameObject:
@@ -743,3 +726,6 @@ MonoBehaviour:
   speed: 10
   rb: {fileID: 3301667144449382665}
   StartPosition: {x: 0, y: 0, z: 0}
+  player1: {fileID: 0}
+  player2: {fileID: 0}
+  touchspeed: 0
