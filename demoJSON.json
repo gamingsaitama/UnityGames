@@ -7,13 +7,13 @@
         },
         {
             "id": "DEA2181B-573A-4E30-86F4-02CF4E75B626",
-            "gameName": "Ping-Pong",
-            "sceneName": "pingpong"
-        }
-    ],
-    [
-        {
-
+            "gameName": "Ludo",
+            "sceneName": "Ludo"
+        },
+            {
+            "id": "DEA2181B-573A-4E30-86F4-02CF4E75B626",
+            "gameName": "8BallPool",
+            "sceneName": "BallPool"
         }
     ],
     "Title": "Unity Demo Games"
