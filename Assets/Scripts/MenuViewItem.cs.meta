@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 2195c8e8ffcc7f6408e6d0d6eedee7f8
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - Pubg: {fileID: 8332427559548923157, guid: f6fee81026d7bb741bb559b54660171e, type: 3}
+  - MenuOption: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

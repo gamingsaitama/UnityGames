@@ -436,35 +436,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 767202867}
   m_CullTransparentMesh: 1
---- !u!1 &1046771353 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3301667144449382667, guid: 09b7a4fb8009f914ba79ab9e10794652, type: 3}
-  m_PrefabInstance: {fileID: 3301667144981204071}
-  m_PrefabAsset: {fileID: 0}
---- !u!50 &1046771354 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 3301667144449382665, guid: 09b7a4fb8009f914ba79ab9e10794652, type: 3}
-  m_PrefabInstance: {fileID: 3301667144981204071}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1046771355
+--- !u!114 &1046771356 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 3301667144406955838, guid: 09b7a4fb8009f914ba79ab9e10794652, type: 3}
+  m_PrefabInstance: {fileID: 3301667144981204071}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1046771353}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c4ee7732fe0014a44ae16194847cc04e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPlayer1: 0
-  speed: 8
-  rb: {fileID: 1046771354}
-  StartPosition: {x: 0, y: 0, z: 0}
-  player1: {fileID: 510152464}
-  player2: {fileID: 651700441}
-  touchspeed: 0.2
 --- !u!1 &1410149441 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3301667143047991273, guid: 09b7a4fb8009f914ba79ab9e10794652, type: 3}
@@ -483,7 +465,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer1: 1
-  speed: 8
+  speed: 10
   rb: {fileID: 1960477584}
   StartPosition: {x: 0, y: 0, z: 0}
   player1: {fileID: 510152464}
@@ -739,11 +721,11 @@ PrefabInstance:
     - target: {fileID: 3301667142999844385, guid: 09b7a4fb8009f914ba79ab9e10794652, type: 3}
       propertyPath: Player1Text
       value: 
-      objectReference: {fileID: 767202869}
+      objectReference: {fileID: 1785576805}
     - target: {fileID: 3301667142999844385, guid: 09b7a4fb8009f914ba79ab9e10794652, type: 3}
       propertyPath: Player2Text
       value: 
-      objectReference: {fileID: 1785576805}
+      objectReference: {fileID: 767202869}
     - target: {fileID: 3301667142999844386, guid: 09b7a4fb8009f914ba79ab9e10794652, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -880,6 +862,22 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3301667144406955838, guid: 09b7a4fb8009f914ba79ab9e10794652, type: 3}
+      propertyPath: player1
+      value: 
+      objectReference: {fileID: 510152464}
+    - target: {fileID: 3301667144406955838, guid: 09b7a4fb8009f914ba79ab9e10794652, type: 3}
+      propertyPath: player2
+      value: 
+      objectReference: {fileID: 651700441}
+    - target: {fileID: 3301667144406955838, guid: 09b7a4fb8009f914ba79ab9e10794652, type: 3}
+      propertyPath: isPlayer1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3301667144406955838, guid: 09b7a4fb8009f914ba79ab9e10794652, type: 3}
+      propertyPath: touchspeed
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 3301667144449382667, guid: 09b7a4fb8009f914ba79ab9e10794652, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -899,7 +897,11 @@ PrefabInstance:
     - target: {fileID: 3301667144478554919, guid: 09b7a4fb8009f914ba79ab9e10794652, type: 3}
       propertyPath: PlayerPaddle
       value: 
-      objectReference: {fileID: 1046771355}
+      objectReference: {fileID: 1046771356}
+    - target: {fileID: 3301667144478554919, guid: 09b7a4fb8009f914ba79ab9e10794652, type: 3}
+      propertyPath: isPlayer1Goal
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4135614358746418101, guid: 09b7a4fb8009f914ba79ab9e10794652, type: 3}
       propertyPath: m_VerticalFit
       value: 0
