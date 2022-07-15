@@ -3,8 +3,8 @@
         {
             "id": "4FE57207-903B-4E66-B316-BE37010CA3B4",
             "gameName": "Ping-Pong",
-            "sceneName": "pingpong"
-            "iconpath" : "/GamesIcon/PingPong"
+            "sceneName": "pingpong",
+            "iconpath" : "GamesIcon/PingPong"
         }
        
     ]
