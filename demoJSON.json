@@ -4,17 +4,8 @@
             "id": "4FE57207-903B-4E66-B316-BE37010CA3B4",
             "gameName": "Ping-Pong",
             "sceneName": "pingpong"
-        },
-        {
-            "id": "DEA2181B-573A-4E30-86F4-02CF4E75B626",
-            "gameName": "Ludo",
-            "sceneName": "Ludo"
-        },
-        {
-            "id": "DEA2181B-573A-4E30-86F4-02CF4E75B626",
-            "gameName": "8BallPool",
-            "sceneName": "BallPool",
-            "iconpath" : "/icon/ballpool"
+            "iconpath" : "/GamesIcon/PingPong"
         }
+       
     ]
 }
