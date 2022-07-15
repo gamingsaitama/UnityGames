@@ -967,8 +967,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1015,7 +1015,7 @@ GameObject:
   - component: {fileID: 6389287093612912753}
   - component: {fileID: 939890369681601032}
   m_Layer: 5
-  m_Name: InputField (TMP) (2)
+  m_Name: Password
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1034,7 +1034,7 @@ RectTransform:
   m_Children:
   - {fileID: 6744512322073429360}
   m_Father: {fileID: 6983094827770826689}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1190,7 +1190,7 @@ GameObject:
   - component: {fileID: 7823558732224119273}
   - component: {fileID: 4345867805657648406}
   m_Layer: 5
-  m_Name: InputField (TMP)
+  m_Name: UserName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1209,7 +1209,7 @@ RectTransform:
   m_Children:
   - {fileID: 6940905405919728336}
   m_Father: {fileID: 6983094827770826689}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1365,7 +1365,7 @@ GameObject:
   - component: {fileID: 8259973949069418458}
   - component: {fileID: 7613292175805075712}
   m_Layer: 5
-  m_Name: InputField (TMP) (1)
+  m_Name: Email
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1384,7 +1384,7 @@ RectTransform:
   m_Children:
   - {fileID: 856484729863606143}
   m_Father: {fileID: 6983094827770826689}
-  m_RootOrder: 5
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1714,7 +1714,7 @@ RectTransform:
   m_Children:
   - {fileID: 6983094826477770397}
   m_Father: {fileID: 6983094827770826689}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: -1.814, y: 0, z: 0}
   m_AnchorMin: {x: 0.3123889, y: 0.29924276}
   m_AnchorMax: {x: 0.689, y: 0.39775726}
@@ -2113,12 +2113,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 6983094826069451416}
-  - {fileID: 6983094827796135082}
   - {fileID: 3831206417791160693}
+  - {fileID: 3265684947208045494}
   - {fileID: 4057157002945108359}
   - {fileID: 4038200922796198173}
-  - {fileID: 3265684947208045494}
+  - {fileID: 6983094826069451416}
+  - {fileID: 6983094827796135082}
   m_Father: {fileID: 6983094827726428085}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2159,7 +2159,7 @@ RectTransform:
   m_Children:
   - {fileID: 6983094826226258598}
   m_Father: {fileID: 6983094827770826689}
-  m_RootOrder: 1
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.3123889, y: 0.19800001}
   m_AnchorMax: {x: 0.689, y: 0.26549518}
@@ -2273,7 +2273,7 @@ GameObject:
   - component: {fileID: 540810648612445543}
   - component: {fileID: 5552974562328200123}
   m_Layer: 5
-  m_Name: InputField (TMP) (3)
+  m_Name: ConfirmPassword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2292,7 +2292,7 @@ RectTransform:
   m_Children:
   - {fileID: 8817815739005206489}
   m_Father: {fileID: 6983094827770826689}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2553,7 +2553,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: UserName
+  m_text: Email
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
