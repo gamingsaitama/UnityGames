@@ -59,14 +59,11 @@ public class MenuViewItem : MonoBehaviour
 
 			foreach (JSONObject item in jsonObject)
 			{
-				Debug.Log($"gameid: {item["id"]}");
-				Debug.Log($"gameName: {item["gameName"]}");
-				Debug.Log($"sceneName: {item["sceneName"]}");
 				var btn = Instantiate(Pubg, MenuOption);
 				btn.GetComponent<GameButtonDataHandler>().gameName.text = item["gameName"];
+				btn.GetComponent<GameButtonDataHandler>().gameIconImage.sprite = Resources.Load<Sprite>(item["iconpath"]);
 			}
 		}
-
 	}
 }
 
@@ -80,8 +77,6 @@ public class GameData
     public string id;
     public string gameName;
     public string sceneName;
-    public string iconpath;
+    public string pingpongiconpath;
 }
-
-
 
