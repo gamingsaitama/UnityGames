@@ -134,15 +134,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &318761692 stripped
+--- !u!114 &310944451 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1006557512, guid: 613dd92b6abf7794bbf325a53949aefd, type: 3}
+  m_CorrespondingSourceObject: {fileID: 2037184618, guid: 613dd92b6abf7794bbf325a53949aefd, type: 3}
   m_PrefabInstance: {fileID: 998361580}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &510163820 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7613292175805075712, guid: f9cbd09f705904565b212a9bbd606bff, type: 3}
+  m_PrefabInstance: {fileID: 2067903867}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &630694631 stripped
@@ -219,7 +230,7 @@ PrefabInstance:
     - target: {fileID: 6658417894729006295, guid: 94191f94965083c4c91fc4ac5be8ab6e, type: 3}
       propertyPath: gmail
       value: 
-      objectReference: {fileID: 1837631593}
+      objectReference: {fileID: 510163820}
     - target: {fileID: 6658417894729006295, guid: 94191f94965083c4c91fc4ac5be8ab6e, type: 3}
       propertyPath: backbtn
       value: 
@@ -235,19 +246,23 @@ PrefabInstance:
     - target: {fileID: 6658417894729006295, guid: 94191f94965083c4c91fc4ac5be8ab6e, type: 3}
       propertyPath: password
       value: 
-      objectReference: {fileID: 1827774859}
+      objectReference: {fileID: 2035921715}
     - target: {fileID: 6658417894729006295, guid: 94191f94965083c4c91fc4ac5be8ab6e, type: 3}
       propertyPath: userName
       value: 
-      objectReference: {fileID: 1974715146}
+      objectReference: {fileID: 1307713180}
     - target: {fileID: 6658417894729006295, guid: 94191f94965083c4c91fc4ac5be8ab6e, type: 3}
       propertyPath: LoginGmail
       value: 
-      objectReference: {fileID: 318761692}
+      objectReference: {fileID: 310944451}
     - target: {fileID: 6658417894729006295, guid: 94191f94965083c4c91fc4ac5be8ab6e, type: 3}
       propertyPath: LoginPanel
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6658417894729006295, guid: 94191f94965083c4c91fc4ac5be8ab6e, type: 3}
+      propertyPath: Logingmail
+      value: 
+      objectReference: {fileID: 310944451}
     - target: {fileID: 6658417894729006295, guid: 94191f94965083c4c91fc4ac5be8ab6e, type: 3}
       propertyPath: registerbtn
       value: 
@@ -259,7 +274,11 @@ PrefabInstance:
     - target: {fileID: 6658417894729006295, guid: 94191f94965083c4c91fc4ac5be8ab6e, type: 3}
       propertyPath: LoginPassCode
       value: 
-      objectReference: {fileID: 1517593253}
+      objectReference: {fileID: 0}
+    - target: {fileID: 6658417894729006295, guid: 94191f94965083c4c91fc4ac5be8ab6e, type: 3}
+      propertyPath: LoginPassword
+      value: 
+      objectReference: {fileID: 1380522751}
     - target: {fileID: 6658417894729006295, guid: 94191f94965083c4c91fc4ac5be8ab6e, type: 3}
       propertyPath: MainMenuPanel
       value: 
@@ -273,9 +292,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 633580014}
     - target: {fileID: 6658417894729006295, guid: 94191f94965083c4c91fc4ac5be8ab6e, type: 3}
+      propertyPath: confirmPassword
+      value: 
+      objectReference: {fileID: 1873657315}
+    - target: {fileID: 6658417894729006295, guid: 94191f94965083c4c91fc4ac5be8ab6e, type: 3}
       propertyPath: confirmpassword
       value: 
-      objectReference: {fileID: 1836320250}
+      objectReference: {fileID: 0}
     - target: {fileID: 6658417894729006295, guid: 94191f94965083c4c91fc4ac5be8ab6e, type: 3}
       propertyPath: registerCnfrmbtn
       value: 
@@ -664,6 +687,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1599560207717915942, guid: 613dd92b6abf7794bbf325a53949aefd, type: 3}
+      propertyPath: m_Name
+      value: GmailHolder
+      objectReference: {fileID: 0}
     - target: {fileID: 1883910943234786545, guid: 613dd92b6abf7794bbf325a53949aefd, type: 3}
       propertyPath: m_fontSize
       value: 72
@@ -794,15 +821,26 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6467443131979243165, guid: a84558c22ac1e6041a851c94c2390ddb, type: 3}
   m_PrefabInstance: {fileID: 6467443133164550927}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1517593253 stripped
+--- !u!114 &1307713180 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1883910943234786545, guid: 613dd92b6abf7794bbf325a53949aefd, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4345867805657648406, guid: f9cbd09f705904565b212a9bbd606bff, type: 3}
+  m_PrefabInstance: {fileID: 2067903867}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1380522751 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2459734882778848898, guid: 613dd92b6abf7794bbf325a53949aefd, type: 3}
   m_PrefabInstance: {fileID: 998361580}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1650566301
@@ -876,48 +914,26 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 6467443131500716034, guid: a84558c22ac1e6041a851c94c2390ddb, type: 3}
   m_PrefabInstance: {fileID: 6467443133164550927}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1827774859 stripped
+--- !u!114 &1873657315 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6983094827834419687, guid: f9cbd09f705904565b212a9bbd606bff, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5552974562328200123, guid: f9cbd09f705904565b212a9bbd606bff, type: 3}
   m_PrefabInstance: {fileID: 2067903867}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d199490a83bb2b844b9695cbf13b01ef, type: 3}
+  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1836320250 stripped
+--- !u!114 &2035921715 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6983094827093424122, guid: f9cbd09f705904565b212a9bbd606bff, type: 3}
+  m_CorrespondingSourceObject: {fileID: 939890369681601032, guid: f9cbd09f705904565b212a9bbd606bff, type: 3}
   m_PrefabInstance: {fileID: 2067903867}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d199490a83bb2b844b9695cbf13b01ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1837631593 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6983094826539035697, guid: f9cbd09f705904565b212a9bbd606bff, type: 3}
-  m_PrefabInstance: {fileID: 2067903867}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d199490a83bb2b844b9695cbf13b01ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1974715146 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6983094825920741838, guid: f9cbd09f705904565b212a9bbd606bff, type: 3}
-  m_PrefabInstance: {fileID: 2067903867}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d199490a83bb2b844b9695cbf13b01ef, type: 3}
+  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &2067903867
@@ -927,6 +943,62 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6912796880728590609}
     m_Modifications:
+    - target: {fileID: 938680677787937327, guid: f9cbd09f705904565b212a9bbd606bff, type: 3}
+      propertyPath: m_text
+      value: Gmail
+      objectReference: {fileID: 0}
+    - target: {fileID: 938680677787937327, guid: f9cbd09f705904565b212a9bbd606bff, type: 3}
+      propertyPath: m_fontSize
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 1343961919285890056, guid: f9cbd09f705904565b212a9bbd606bff, type: 3}
+      propertyPath: m_fontSize
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 1343961919285890056, guid: f9cbd09f705904565b212a9bbd606bff, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1343961919285890056, guid: f9cbd09f705904565b212a9bbd606bff, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 1343961919285890056, guid: f9cbd09f705904565b212a9bbd606bff, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3045189316512632002, guid: f9cbd09f705904565b212a9bbd606bff, type: 3}
+      propertyPath: m_fontSize
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 3045189316512632002, guid: f9cbd09f705904565b212a9bbd606bff, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3045189316512632002, guid: f9cbd09f705904565b212a9bbd606bff, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 3045189316512632002, guid: f9cbd09f705904565b212a9bbd606bff, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287425986665862476, guid: f9cbd09f705904565b212a9bbd606bff, type: 3}
+      propertyPath: m_Name
+      value: Password
+      objectReference: {fileID: 0}
+    - target: {fileID: 5986050091433627008, guid: f9cbd09f705904565b212a9bbd606bff, type: 3}
+      propertyPath: m_Name
+      value: UserName
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042122833150466778, guid: f9cbd09f705904565b212a9bbd606bff, type: 3}
+      propertyPath: m_Name
+      value: Gmail
+      objectReference: {fileID: 0}
+    - target: {fileID: 6189507689010952436, guid: f9cbd09f705904565b212a9bbd606bff, type: 3}
+      propertyPath: m_text
+      value: SIGN UP
+      objectReference: {fileID: 0}
     - target: {fileID: 6983094825920741833, guid: f9cbd09f705904565b212a9bbd606bff, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 1.9998779
@@ -985,7 +1057,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6983094826941737258, guid: f9cbd09f705904565b212a9bbd606bff, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6983094826941737259, guid: f9cbd09f705904565b212a9bbd606bff, type: 3}
       propertyPath: m_Pivot.x
@@ -1098,6 +1170,42 @@ PrefabInstance:
     - target: {fileID: 6983094827919435225, guid: f9cbd09f705904565b212a9bbd606bff, type: 3}
       propertyPath: m_FontData.m_RichText
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005840940975444183, guid: f9cbd09f705904565b212a9bbd606bff, type: 3}
+      propertyPath: m_Name
+      value: CnfrmPassword
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136747857406601091, guid: f9cbd09f705904565b212a9bbd606bff, type: 3}
+      propertyPath: m_fontSize
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136747857406601091, guid: f9cbd09f705904565b212a9bbd606bff, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136747857406601091, guid: f9cbd09f705904565b212a9bbd606bff, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136747857406601091, guid: f9cbd09f705904565b212a9bbd606bff, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9187388670086606646, guid: f9cbd09f705904565b212a9bbd606bff, type: 3}
+      propertyPath: m_fontSize
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 9187388670086606646, guid: f9cbd09f705904565b212a9bbd606bff, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9187388670086606646, guid: f9cbd09f705904565b212a9bbd606bff, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 9187388670086606646, guid: f9cbd09f705904565b212a9bbd606bff, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9cbd09f705904565b212a9bbd606bff, type: 3}

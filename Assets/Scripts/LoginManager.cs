@@ -13,14 +13,14 @@ public class LoginManager : MonoBehaviour
     public GameObject RegisterPanel;
 
     [Header("RegisterInputFields")]
-    [SerializeField] InputField userName;
-    [SerializeField] InputField gmail;
-    [SerializeField] InputField password;
-    [SerializeField] InputField confirmpassword;
+    [SerializeField] TMP_InputField userName;
+    [SerializeField] TMP_InputField gmail;
+    [SerializeField] TMP_InputField password;
+    [SerializeField] TMP_InputField confirmPassword;
 
     [Header("LogInInputs")]
-    [SerializeField] TextMeshProUGUI LoginGmail;
-    [SerializeField] TextMeshProUGUI LoginPassCode;
+    [SerializeField] TMP_InputField Logingmail;
+    [SerializeField] TMP_InputField LoginPassword;
 
     [Header("Buttons")]
     public Button guestbtn;
@@ -54,7 +54,7 @@ public class LoginManager : MonoBehaviour
         var userData = PlayerPrefs.GetString("RegisterData");
         var registerObj = JsonUtility.FromJson<RegisterData>(userData);
 
-        if (registerObj.email == LoginGmail.text && registerObj.password == LoginPassCode.text)
+        if (registerObj.gmail == Logingmail.text && registerObj.password == LoginPassword.text)
         {
             MainMenuPanel.SetActive(true);
         }
@@ -77,7 +77,7 @@ public class LoginManager : MonoBehaviour
             return;
         }
 
-        if (string.IsNullOrEmpty(password.text) && string.IsNullOrEmpty(confirmpassword.text))
+        if (string.IsNullOrEmpty(password.text) && string.IsNullOrEmpty(confirmPassword.text))
         {
             Debug.Log("enter password");
             return;
@@ -95,10 +95,10 @@ public class LoginManager : MonoBehaviour
     {
         RegisterData RegisterData = new RegisterData();
 
-        RegisterData.userNames = userName.ToString();
-        RegisterData.email = gmail.ToString();
-        RegisterData.password = password.ToString();
-        RegisterData.confirmPasscode = confirmpassword.ToString();
+        RegisterData.userName = userName.text;
+        RegisterData.gmail = gmail.text;
+        RegisterData.password = password.text;
+        RegisterData.confirmPassword = confirmPassword.text;
 
         var jsonString = JsonUtility.ToJson(RegisterData);
         PlayerPrefs.SetString("RegisterData", jsonString);
@@ -109,8 +109,8 @@ public class LoginManager : MonoBehaviour
 
 public struct RegisterData
 {
-    public string userNames;
-    public string email;
+    public string userName;
+    public string gmail;
     public string password;
-    public string confirmPasscode;
+    public string confirmPassword;
 }
