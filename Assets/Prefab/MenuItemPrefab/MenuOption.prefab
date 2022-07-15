@@ -36,7 +36,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.808132, y: 0.8861561}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.98999023, y: 0.07305908}
+  m_AnchoredPosition: {x: -0.98999023, y: 0.07299805}
   m_SizeDelta: {x: -1.4526749, y: -0.14448786}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &64360946877338499
@@ -194,10 +194,10 @@ RectTransform:
   m_Father: {fileID: 7075195396302662458}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.10158334}
+  m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.68755555}
-  m_AnchoredPosition: {x: 0, y: 3.906189}
-  m_SizeDelta: {x: 0, y: 7.8119965}
+  m_AnchoredPosition: {x: 0, y: 3.980957}
+  m_SizeDelta: {x: 0, y: 7.6600037}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7075195396179091952
 MonoBehaviour:
@@ -212,9 +212,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Content: {fileID: 7075195396856209867}
-  m_Horizontal: 1
+  m_Horizontal: 0
   m_Vertical: 1
-  m_MovementType: 2
+  m_MovementType: 1
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
@@ -277,7 +277,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 12, y: -305.43213}
+  m_AnchoredPosition: {x: 0, y: -305.43213}
   m_SizeDelta: {x: 443.50366, y: 443.5037}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7075195396186300715
@@ -336,7 +336,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7075195396302662458
 RectTransform:
   m_ObjectHideFlags: 0
@@ -372,29 +372,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2195c8e8ffcc7f6408e6d0d6eedee7f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allGames:
-  - Name: Caroom
-    Icon: {fileID: 21300000, guid: a3be0499d367c444995a8b59f0cb6889, type: 3}
-  - Name: DeadShot
-    Icon: {fileID: 21300000, guid: 9d2ca02d3dd560a46987fb20ddde13fa, type: 3}
-  - Name: Ludo
-    Icon: {fileID: 21300000, guid: 464eaf894e58ad248af02d45b1b92b8a, type: 3}
-  - Name: Candy
-    Icon: {fileID: 21300000, guid: 60734213d90e4244aa7185d2b846ccf4, type: 3}
-  - Name: Pubg
-    Icon: {fileID: 21300000, guid: 4fcad3cf70ebcfe48b704a81548ede38, type: 3}
-  - Name: CarRacing
-    Icon: {fileID: 21300000, guid: 198df34c484f58d469b78544c9fe65ad, type: 3}
-  - Name: TampleRun
-    Icon: {fileID: 21300000, guid: 6e7d5c25ae5258a47abb061064a29c98, type: 3}
-  - Name: Toy
-    Icon: {fileID: 21300000, guid: 497fcf3645eeb07468da5a5243a4cb74, type: 3}
-  - Name: BikeRacing
-    Icon: {fileID: 21300000, guid: f1307e6d637850542af022fbf8cc6b64, type: 3}
-  - Name: AngryBirds
-    Icon: {fileID: 21300000, guid: bdcb4f862a315bb4491de38afcdc08a0, type: 3}
-  - Name: PingPong
-    Icon: {fileID: 21300000, guid: ed9192f1d8dd59b46992311006793c37, type: 3}
   Pubg: {fileID: 8332427559548923157, guid: d973aff86d9971e4c8149b99d8bd81fd, type: 3}
   MenuOption: {fileID: 7075195396856209867}
 --- !u!222 &4653556122918625500
@@ -481,6 +458,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7075195396856209867}
   - component: {fileID: 371873781707350614}
+  - component: {fileID: 1199057483}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -502,11 +480,11 @@ RectTransform:
   m_Father: {fileID: 7075195396335459664}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_SizeDelta: {x: 899, y: 0}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &371873781707350614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -520,17 +498,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
+    m_Left: 49
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 0
+  m_ChildAlignment: 1
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 250, y: 250}
-  m_Spacing: {x: 0, y: 0}
-  m_Constraint: 0
-  m_ConstraintCount: 2
+  m_Spacing: {x: 50, y: 50}
+  m_Constraint: 1
+  m_ConstraintCount: 3
+--- !u!114 &1199057483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7075195396856209866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 2
 --- !u!1 &7075195396950875434
 GameObject:
   m_ObjectHideFlags: 0
