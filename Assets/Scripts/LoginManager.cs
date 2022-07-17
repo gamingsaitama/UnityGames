@@ -22,12 +22,19 @@ public class LoginManager : MonoBehaviour
     [SerializeField] TMP_InputField Logingmail;
     [SerializeField] TMP_InputField LoginPassword;
 
+    public TextMeshProUGUI errorText;
+
     [Header("Buttons")]
     public Button guestbtn;
     public Button loginbtn;
     public Button registerbtn;
     public Button registerCnfrmbtn;
     public Button backbtn;
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(this);
+    }
 
     private void Start()
     {
@@ -36,10 +43,8 @@ public class LoginManager : MonoBehaviour
         loginbtn.onClick.AddListener(CheckLoginData);
         registerbtn.onClick.AddListener(OnClickRegisterBtn);
         registerCnfrmbtn.onClick.AddListener(OnCheckUserRegistrationData);
-        backbtn.onClick.AddListener(() =>
-        {
-            MainMenuPanel.SetActive(false);
-        });
+        backbtn.onClick.AddListener(LoadPanel);
+        
     }
 
     public void LoadPanel()
@@ -56,12 +61,19 @@ public class LoginManager : MonoBehaviour
 
         if (registerObj.gmail == Logingmail.text && registerObj.password == LoginPassword.text)
         {
-            MainMenuPanel.SetActive(true);
+            LoadPanel();
         }
         else
         {
-            Debug.Log("Invalid Input");
+            errorText.text = registerObj.gmail != Logingmail.text ? "Please Enter The Proper Gmail" : "Please Enter The Proper PassWord ";
+            StartCoroutine(RemoveErrorText(errorText));
         }
+    }
+
+    IEnumerator RemoveErrorText(TextMeshProUGUI errorText)
+    {
+        yield return new WaitForSeconds(1);
+        errorText.text = null;
     }
 
     public void OnClickRegisterBtn()
@@ -73,18 +85,18 @@ public class LoginManager : MonoBehaviour
     {
         if (string.IsNullOrEmpty(userName.text) && string.IsNullOrEmpty(gmail.text))
         {
-            Debug.Log("enter UserName");
+            errorText.text = "enter UserName";
             return;
         }
 
         if (string.IsNullOrEmpty(password.text) && string.IsNullOrEmpty(confirmPassword.text))
         {
-            Debug.Log("enter password");
+            errorText.text = "enter password";
             return;
         }
         if(string.IsNullOrEmpty(gmail.text) && string.IsNullOrEmpty(gmail.text))
         {
-            Debug.Log("enter the email");
+            errorText.text = "enter the email";
             return;
         }
 

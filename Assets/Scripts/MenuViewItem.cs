@@ -7,19 +7,11 @@ using System;
 using TMPro;
 using UnityEngine.Networking;
 using SimpleJSON;
+using UnityEngine.SceneManagement;
+
 
 public class MenuViewItem : MonoBehaviour
 {
-	/*[Serializable]
-	public struct Game
-	{
-		public string Name;
-		public Sprite Icon;
-
-	}
-
-	[SerializeField] Game[] allGames;*/
-
 	public GameObject Pubg;
 	public Transform MenuOption;
 
@@ -27,22 +19,9 @@ public class MenuViewItem : MonoBehaviour
 
 	void Start()
 	{
-		//SetMenuData();
 		StartCoroutine(SetJsonData());
 	}
 
-	/*private void SetMenuData()
-	{
-		int N = allGames.Length;
-		for (int i = 0; i < N; i++)
-		{
-			var btn = Instantiate(Pubg, MenuOption);
-			btn.GetComponent<GameButtonDataHandler>().gameIconImage.sprite = allGames[i].Icon;
-			btn.GetComponent<GameButtonDataHandler>().gameName.text = allGames[i].Name;
-			//btn.GetComponent<Button>().onClick.AddListener();
-		}
-	}
-	*/
 	IEnumerator SetJsonData()
 	{
 		UnityWebRequest uwr = UnityWebRequest.Get(GameDataUrl);
@@ -62,21 +41,19 @@ public class MenuViewItem : MonoBehaviour
 				var btn = Instantiate(Pubg, MenuOption);
 				btn.GetComponent<GameButtonDataHandler>().gameName.text = item["gameName"];
 				btn.GetComponent<GameButtonDataHandler>().gameIconImage.sprite = Resources.Load<Sprite>(item["iconpath"]);
+				btn.GetComponent<Button>().onClick.AddListener(() =>
+				{
+					StartCoroutine(LoadGameScene(item["sceneName"], item["isGameInLandscape"]));
+				});
 			}
 		}
 	}
-}
 
-public class JsonGameData
-{
-    public List<GameData> GameData;
-}
-
-public class GameData
-{
-    public string id;
-    public string gameName;
-    public string sceneName;
-    public string pingpongiconpath;
+	IEnumerator LoadGameScene(JSONNode GameScene, bool isGameRotated)
+	{
+		yield return new WaitForSeconds(1f);
+		Screen.orientation = isGameRotated ? ScreenOrientation.LandscapeLeft : ScreenOrientation.Portrait;
+		SceneManager.LoadScene(GameScene.Value);
+	}
 }
 
