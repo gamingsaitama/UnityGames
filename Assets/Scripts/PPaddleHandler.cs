@@ -14,7 +14,7 @@ namespace RecInfo.Game.Pingpong.Ball
         public Transform player2;
 
         private float movement;
-        private Touch[] touch ;
+        
         [SerializeField] float touchspeed;
 
         private void Start()
