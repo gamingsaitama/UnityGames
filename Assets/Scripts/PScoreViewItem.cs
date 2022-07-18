@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+
 namespace RecInfo.Game.Pingpong.Ball
 {
     public class PScoreViewItem : MonoBehaviour
@@ -10,15 +12,18 @@ namespace RecInfo.Game.Pingpong.Ball
         [SerializeField] TextMeshProUGUI Player1Text;
         [SerializeField] TextMeshProUGUI Player2Text;
         public static PScoreViewItem Instance;
+
         private int _Player1Score;
         private int _Player2Score;
-        private void Awake()
+
+        private void Start()
         {
-            if (Instance==null)
+            if(Instance==null)
             {
                 Instance = this;
             }
         }
+
         public void Player1Scored()
         {
             _Player1Score++;

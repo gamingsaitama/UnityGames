@@ -18,14 +18,16 @@ namespace RecInfo.Game.Pingpong.Ball
             {
                 if (!isPlayer1Goal)
                 {
+                    PScoreViewItem.Instance.Player1Scored();
                     ResetAll();
-                    Player2LifeCounter.health--; 
+                   // Player2LifeCounter.health--; 
                 }
 
                 else
                 {
+                    PScoreViewItem.Instance.Player2Scored();
                     ResetAll();
-                    Player1LifeCounter.health--;
+                   // Player1LifeCounter.health--;
                 }
             }
 

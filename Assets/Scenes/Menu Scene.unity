@@ -691,6 +691,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GmailHolder
       objectReference: {fileID: 0}
+    - target: {fileID: 1599560208067549116, guid: 613dd92b6abf7794bbf325a53949aefd, type: 3}
+      propertyPath: m_text
+      value: I Don't Have Account Register?
+      objectReference: {fileID: 0}
+    - target: {fileID: 1599560208067549116, guid: 613dd92b6abf7794bbf325a53949aefd, type: 3}
+      propertyPath: m_fontSize
+      value: 48.3
+      objectReference: {fileID: 0}
     - target: {fileID: 1883910943234786545, guid: 613dd92b6abf7794bbf325a53949aefd, type: 3}
       propertyPath: m_fontSize
       value: 72
