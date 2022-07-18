@@ -264,6 +264,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 310944451}
     - target: {fileID: 6658417894729006295, guid: 94191f94965083c4c91fc4ac5be8ab6e, type: 3}
+      propertyPath: logInPanel
+      value: 
+      objectReference: {fileID: 1151185023}
+    - target: {fileID: 6658417894729006295, guid: 94191f94965083c4c91fc4ac5be8ab6e, type: 3}
       propertyPath: registerbtn
       value: 
       objectReference: {fileID: 82045830}
@@ -800,6 +804,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1151185023 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1599560207365133537, guid: 613dd92b6abf7794bbf325a53949aefd, type: 3}
+  m_PrefabInstance: {fileID: 998361580}
+  m_PrefabAsset: {fileID: 0}
 --- !u!82 &1181018454 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 6467443132054835801, guid: a84558c22ac1e6041a851c94c2390ddb, type: 3}
@@ -1274,7 +1283,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 371873781707350614, guid: f1fb804578484fb409d95bec38b224ae, type: 3}
       propertyPath: m_ChildAlignment
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 371873781707350614, guid: f1fb804578484fb409d95bec38b224ae, type: 3}
       propertyPath: m_Padding.m_Left

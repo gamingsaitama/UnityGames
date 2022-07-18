@@ -11,6 +11,7 @@ public class LoginManager : MonoBehaviour
     [Header("Panels")]
     public GameObject MainMenuPanel;
     public GameObject RegisterPanel;
+    public GameObject logInPanel;
 
     [Header("RegisterInputFields")]
     [SerializeField] TMP_InputField userName;
@@ -22,19 +23,12 @@ public class LoginManager : MonoBehaviour
     [SerializeField] TMP_InputField Logingmail;
     [SerializeField] TMP_InputField LoginPassword;
 
-    public TextMeshProUGUI errorText;
-
     [Header("Buttons")]
     public Button guestbtn;
     public Button loginbtn;
     public Button registerbtn;
     public Button registerCnfrmbtn;
     public Button backbtn;
-
-    private void Awake()
-    {
-        DontDestroyOnLoad(this);
-    }
 
     private void Start()
     {
@@ -43,13 +37,16 @@ public class LoginManager : MonoBehaviour
         loginbtn.onClick.AddListener(CheckLoginData);
         registerbtn.onClick.AddListener(OnClickRegisterBtn);
         registerCnfrmbtn.onClick.AddListener(OnCheckUserRegistrationData);
-        backbtn.onClick.AddListener(LoadPanel);
-        
+        backbtn.onClick.AddListener(() =>
+        {
+            MainMenuPanel.SetActive(false);
+        });
     }
 
     public void LoadPanel()
     {
         AudioManager.Instance.PlaySFXAudio(AudioStates.ButtonClick);
+        logInPanel.SetActive(false);
         MainMenuPanel.SetActive(true);
 
     }
@@ -65,15 +62,8 @@ public class LoginManager : MonoBehaviour
         }
         else
         {
-            errorText.text = registerObj.gmail != Logingmail.text ? "Please Enter The Proper Gmail" : "Please Enter The Proper PassWord ";
-            StartCoroutine(RemoveErrorText(errorText));
+            Debug.Log("Invalid Input");
         }
-    }
-
-    IEnumerator RemoveErrorText(TextMeshProUGUI errorText)
-    {
-        yield return new WaitForSeconds(1);
-        errorText.text = null;
     }
 
     public void OnClickRegisterBtn()
@@ -85,18 +75,18 @@ public class LoginManager : MonoBehaviour
     {
         if (string.IsNullOrEmpty(userName.text) && string.IsNullOrEmpty(gmail.text))
         {
-            errorText.text = "enter UserName";
+            Debug.Log("enter UserName");
             return;
         }
 
         if (string.IsNullOrEmpty(password.text) && string.IsNullOrEmpty(confirmPassword.text))
         {
-            errorText.text = "enter password";
+            Debug.Log("enter password");
             return;
         }
         if(string.IsNullOrEmpty(gmail.text) && string.IsNullOrEmpty(gmail.text))
         {
-            errorText.text = "enter the email";
+            Debug.Log("enter the email");
             return;
         }
 
@@ -116,8 +106,6 @@ public class LoginManager : MonoBehaviour
         PlayerPrefs.SetString("RegisterData", jsonString);
     }
 }
-
-
 
 public struct RegisterData
 {

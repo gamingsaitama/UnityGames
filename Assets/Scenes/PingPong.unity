@@ -926,7 +926,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CloseBtn: {fileID: 1983218252}
-  MenuScene: Menu Scene
 --- !u!1001 &3301667144981204071
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1020,7 +1019,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3301667143199905548, guid: 09b7a4fb8009f914ba79ab9e10794652, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.85
+      value: -11.28
       objectReference: {fileID: 0}
     - target: {fileID: 3301667143199905548, guid: 09b7a4fb8009f914ba79ab9e10794652, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1072,7 +1071,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3301667144006656436, guid: 09b7a4fb8009f914ba79ab9e10794652, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.8
+      value: 11.28
       objectReference: {fileID: 0}
     - target: {fileID: 3301667144006656436, guid: 09b7a4fb8009f914ba79ab9e10794652, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1205,7 +1204,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6881422096208688155, guid: f8de4ba6f097018409b030423c79d6b6, type: 3}
       propertyPath: m_LocalScale.x
-      value: 8.867936
+      value: 9.25
       objectReference: {fileID: 0}
     - target: {fileID: 6881422096208688155, guid: f8de4ba6f097018409b030423c79d6b6, type: 3}
       propertyPath: m_LocalScale.y
@@ -1229,7 +1228,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6881422096414774659, guid: f8de4ba6f097018409b030423c79d6b6, type: 3}
       propertyPath: m_LocalScale.x
-      value: 8.871017
+      value: 9.25
       objectReference: {fileID: 0}
     - target: {fileID: 6881422096414774659, guid: f8de4ba6f097018409b030423c79d6b6, type: 3}
       propertyPath: m_LocalScale.y
