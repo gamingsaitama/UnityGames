@@ -14,12 +14,18 @@ public class MenuViewItem : MonoBehaviour
 {
 	public GameObject Pubg;
 	public Transform MenuOption;
+	public static MenuViewItem Instance;
 
 	private string GameDataUrl = "https://raw.githubusercontent.com/AmDce/UnityGames/main/demoJSON.json";
 
 	void Start()
 	{
+		DontDestroyOnLoad(this.gameObject);
 		StartCoroutine(SetJsonData());
+		if(Instance != null)
+        {
+			Instance = this;
+		}
 	}
 
 	IEnumerator SetJsonData()
@@ -49,7 +55,7 @@ public class MenuViewItem : MonoBehaviour
 		}
 	}
 
-	IEnumerator LoadGameScene(JSONNode GameScene, bool isGameRotated)
+	public IEnumerator LoadGameScene(JSONNode GameScene, bool isGameRotated)
 	{
 		yield return new WaitForSeconds(1f);
 		Screen.orientation = isGameRotated ? ScreenOrientation.LandscapeLeft : ScreenOrientation.Portrait;
