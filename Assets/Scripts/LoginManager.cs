@@ -29,6 +29,7 @@ public class LoginManager : MonoBehaviour
     public Button registerbtn;
     public Button registerCnfrmbtn;
     public Button backbtn;
+    public static LoginManager Instance;
 
     private void Start()
     {
@@ -40,15 +41,28 @@ public class LoginManager : MonoBehaviour
         backbtn.onClick.AddListener(() =>
         {
             MainMenuPanel.SetActive(false);
+            logInPanel.SetActive(true);
         });
+        if(Instance==null)
+        {
+            DontDestroyOnLoad(this);
+            Instance = this;
+        }
+        CheckLogInStatus();
+    }
+
+    private void CheckLogInStatus()
+    {
+        if (PlayerPrefs.HasKey("HasLogged") && PlayerPrefs.GetInt("HasLogged")==1)
+            LoadPanel();
     }
 
     public void LoadPanel()
     {
-        AudioManager.Instance.PlaySFXAudio(AudioStates.ButtonClick);
+        //AudioManager.Instance.PlaySFXAudio(AudioStates.ButtonClick);
         logInPanel.SetActive(false);
         MainMenuPanel.SetActive(true);
-
+        PlayerPrefs.SetInt("HasLogged", 1);
     }
 
     public void CheckLoginData()
@@ -105,6 +119,10 @@ public class LoginManager : MonoBehaviour
         var jsonString = JsonUtility.ToJson(RegisterData);
         PlayerPrefs.SetString("RegisterData", jsonString);
     }
+
+
+   
+
 }
 
 public struct RegisterData
