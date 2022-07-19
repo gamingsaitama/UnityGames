@@ -16,6 +16,11 @@ public class MenuViewItem : MonoBehaviour
 	public Transform MenuOption;
 	public static MenuViewItem Instance;
 
+	[Header("Loader Panel")]
+	public GameObject loadingPanel;
+	public Slider loadingBar;
+	public Text loadingText;
+
 	private string GameDataUrl = "https://raw.githubusercontent.com/AmDce/UnityGames/main/demoJSON.json";
 
 	void Start()
@@ -57,9 +62,25 @@ public class MenuViewItem : MonoBehaviour
 
 	public IEnumerator LoadGameScene(JSONNode GameScene, bool isGameRotated)
 	{
+		loadingPanel.SetActive(true);
 		yield return new WaitForSeconds(1f);
 		Screen.orientation = isGameRotated ? ScreenOrientation.LandscapeLeft : ScreenOrientation.Portrait;
-		SceneManager.LoadScene(GameScene.Value);
+
+		AsyncOperation op = SceneManager.LoadSceneAsync(GameScene.Value);
+		op.allowSceneActivation = false;
+
+		while (!op.isDone)
+		{
+			float progress = Mathf.Clamp01(op.progress / .9f);
+			loadingBar.value = progress;
+			loadingText.text = progress * 100f + "%";
+			if (op.progress >= .9f)
+			{
+				yield return new WaitForSeconds(1f);
+				op.allowSceneActivation = true;
+			}
+			yield return null;
+		}
 	}
 }
 
