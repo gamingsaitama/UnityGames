@@ -53,7 +53,7 @@ public class LoginManager : MonoBehaviour
     {
         var userData = PlayerPrefs.GetString("RegisterData");
         var registerObj = JsonUtility.FromJson<RegisterData>(userData);
-
+       
         if (registerObj.email == LoginGmail.text && registerObj.password == LoginPassCode.text)
         {
             MainMenuPanel.SetActive(true);

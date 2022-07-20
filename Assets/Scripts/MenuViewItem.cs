@@ -1,4 +1,3 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,7 +14,6 @@ public class MenuViewItem : MonoBehaviour
 		public Sprite Icon;
 		
 	}
-
 	[SerializeField] Game[] allGames;
 
 	public GameObject Pubg;
