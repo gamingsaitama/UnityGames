@@ -16,6 +16,7 @@ public class CloseButton : MonoBehaviour
 
     public void OnClickedClosebtn()
     {
+        Screen.orientation = ScreenOrientation.Portrait;
         SceneManager.LoadScene("Menu Scene");
         //LoginManager.Instance.LoadPanel();
     }

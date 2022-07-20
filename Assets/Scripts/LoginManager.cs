@@ -12,6 +12,7 @@ public class LoginManager : MonoBehaviour
     public GameObject MainMenuPanel;
     public GameObject RegisterPanel;
     public GameObject logInPanel;
+    public GameObject SettingPanel;
 
     [Header("RegisterInputFields")]
     [SerializeField] TMP_InputField userName;
@@ -28,7 +29,7 @@ public class LoginManager : MonoBehaviour
     public Button loginbtn;
     public Button registerbtn;
     public Button registerCnfrmbtn;
-    public Button backbtn;
+    public Button logoutbtn;
     public static LoginManager Instance;
 
     private void Start()
@@ -38,11 +39,8 @@ public class LoginManager : MonoBehaviour
         loginbtn.onClick.AddListener(CheckLoginData);
         registerbtn.onClick.AddListener(OnClickRegisterBtn);
         registerCnfrmbtn.onClick.AddListener(OnCheckUserRegistrationData);
-        backbtn.onClick.AddListener(() =>
-        {
-            MainMenuPanel.SetActive(false);
-            logInPanel.SetActive(true);
-        });
+        logoutbtn.onClick.AddListener(LoadLoginPanel);
+        
         if(Instance==null)
         {
             DontDestroyOnLoad(this);
@@ -73,6 +71,8 @@ public class LoginManager : MonoBehaviour
         if (registerObj.gmail == Logingmail.text && registerObj.password == LoginPassword.text)
         {
             LoadPanel();
+            Logingmail.text = null;
+            LoginPassword.text = null;
         }
         else
         {
@@ -119,10 +119,13 @@ public class LoginManager : MonoBehaviour
         var jsonString = JsonUtility.ToJson(RegisterData);
         PlayerPrefs.SetString("RegisterData", jsonString);
     }
-
-
-   
-
+    public void LoadLoginPanel()
+    {
+        SettingPanel.SetActive(false);
+        MainMenuPanel.SetActive(false);
+        logInPanel.SetActive(true);
+        PlayerPrefs.DeleteKey("HasLogged");
+    }
 }
 
 public struct RegisterData
