@@ -44,11 +44,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MainMenuPanel: {fileID: 0}
-  LoginPanel: {fileID: 0}
   RegisterPanel: {fileID: 0}
   userName: {fileID: 0}
   gmail: {fileID: 0}
   password: {fileID: 0}
-  confirmpassword: {fileID: 0}
-  LoginGmail: {fileID: 0}
-  LoginPassCode: {fileID: 0}
+  confirmPassword: {fileID: 0}
+  Logingmail: {fileID: 0}
+  LoginPassword: {fileID: 0}
+  guestbtn: {fileID: 0}
+  loginbtn: {fileID: 0}
+  registerbtn: {fileID: 0}
+  registerCnfrmbtn: {fileID: 0}
+  backbtn: {fileID: 0}
