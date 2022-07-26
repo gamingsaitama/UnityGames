@@ -9,11 +9,9 @@ public class SlingBounce : MonoBehaviour
     {
         if (collision.transform.tag == "Strikers")
         {
-            if (Input.touchCount!=1)
+            if (Input.touchCount>0)
             {
                 Touch _touch = Input.GetTouch(0);
-                Vector2 _touchPosition = _touch.position;
-
                 if (_touch.phase == TouchPhase.Ended)
                     collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * BounceForce,ForceMode2D.Impulse);
             }
