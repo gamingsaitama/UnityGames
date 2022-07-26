@@ -17,6 +17,7 @@ public class Playerprefs : MonoBehaviour
         //Username();
         name = PlayerPrefs.GetString("Username");
         Debug.Log(PlayerPrefs.GetString("Username"));
+
     }
 
     public void Username()
