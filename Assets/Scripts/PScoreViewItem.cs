@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,13 +28,26 @@ namespace RecInfo.Game.Pingpong.Ball
         public void Player1Scored()
         {
             _Player1Score++;
-            Player1Text.text = _Player1Score.ToString();
+            AssignScore(_Player1Score, Player1Text);
         }
 
         public void Player2Scored()
         {
             _Player2Score++;
-            Player2Text.text = _Player2Score.ToString();
+            AssignScore(_Player2Score, Player2Text);
+        }
+        public void ScoreReset()
+        {
+            _Player1Score = 0;
+            AssignScore(_Player1Score, Player1Text);
+            _Player2Score = 0;
+            AssignScore(_Player2Score, Player2Text);
+        }
+
+        private void AssignScore(int score, TextMeshProUGUI scorefield)
+        {
+            scorefield.text = score.ToString();
         }
     }
+   
 }

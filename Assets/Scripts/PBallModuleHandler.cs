@@ -13,7 +13,7 @@ namespace RecInfo.Game.Pingpong.Ball
         void Start()
         {
             StartPosition = transform.position;
-            Launch();
+            Invoke("Launch",1f);
         }
 
         public void Reset()
