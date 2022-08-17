@@ -3,49 +3,77 @@ using UnityEngine;
 public class TouchMoveStrikers : MonoBehaviour
 {
     Transform _strikerTransform;
-    Vector2 _offset;
+    //Vector2 _offset;
     bool _canDrag = false;
+    bool _oppoCanDrag = false;
+    string _tag;
 
     void Update()
     {
         Vector2 _position;
-        Touch[] _touchCount = Input.touches;
-        foreach (var _touch in _touchCount)
+        Vector2 _oppoPosiion;
+        if (Input.touchCount > 0)
         {
-        Vector2 _touchPosition = _touch.position;
-
-        if (_touch.phase == TouchPhase.Began)
-        {
-        Ray _ray = Camera.main.ScreenPointToRay(_touchPosition);
-        RaycastHit2D _raycastHit = Physics2D.Raycast(_ray.origin, -Vector2.up);
-            if (_raycastHit.collider.tag == "Strikers")
+            for (int i = 0; i < Input.touchCount; i++)
             {
-                _strikerTransform = _raycastHit.transform;
-                _position = new Vector2(_touchPosition.x, _touchPosition.y);
-                _position = Camera.main.ScreenToWorldPoint(_position);
-                _offset.x = _strikerTransform.position.x - _position.x;
-                _offset.y = _strikerTransform.position.y - _position.y;
-                _canDrag = true;
+                Touch _touch = Input.touches[i];
+                Vector2 _touchPosition = _touch.position;
+
+                if (_touch.phase == TouchPhase.Began)
+                {
+                    Ray _ray = Camera.main.ScreenPointToRay(_touchPosition);
+                    RaycastHit2D _raycastHit = Physics2D.Raycast(_ray.origin, -Vector2.up);
+                    if (_touchPosition.y < Screen.height / 2 && _raycastHit.collider.tag == "Strikers")
+                    {
+                        _tag = _raycastHit.collider.tag;
+                        _strikerTransform = _raycastHit.transform;
+                       // _position = new Vector2(_touchPosition.x, _touchPosition.y);
+                        //_position = Camera.main.ScreenToWorldPoint(_position);
+                        //_offset.x = _strikerTransform.position.x - _position.x;
+                        //_offset.y = _strikerTransform.position.y - _position.y;
+                        _canDrag = true;
+                    }
+                    else if(_touchPosition.y > Screen.height / 2 && _raycastHit.collider.tag == "OppoStrikers")
+                    {
+                        _tag = _raycastHit.collider.tag;
+                        _strikerTransform = _raycastHit.transform;
+                        //_oppoPosiion = new Vector2(_touchPosition.x, _touchPosition.y);
+                        //_oppoPosiion = Camera.main.ScreenToWorldPoint(_oppoPosiion);
+                       // _offset.x = _strikerTransform.position.x - _oppoPosiion.x;
+                        //_offset.y = _strikerTransform.position.y - _oppoPosiion.y;
+                        _oppoCanDrag = true;
+                    }
+                }
+
+                if (_touch.phase == TouchPhase.Moved)
+                {
+                    if (_tag == "Strikers" && _canDrag)
+                    {
+                        _position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+                        _position = Camera.main.ScreenToWorldPoint(_position);
+                        _strikerTransform.position = _position ;
+                    }
+                    else if (_tag == "OppoStrikers" && _oppoCanDrag)
+                    {
+                        _oppoPosiion = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+                        _oppoPosiion = Camera.main.ScreenToWorldPoint(_oppoPosiion);
+                        _strikerTransform.position = _oppoPosiion ;
+                    }
+                }
+                if (_touch.phase == TouchPhase.Ended || _touch.phase == TouchPhase.Canceled)
+                {
+                    if (_canDrag && _tag == "Strikers")
+                    {
+                        _canDrag = false;
+                        _tag = "";
+                    }
+                    else if (_oppoCanDrag && _tag == "OppoStrikers")
+                    {
+                        _oppoCanDrag = false;
+                        _tag = "";
+                    }                    
+                }
             }
-            if (_raycastHit.collider.tag == "OppoStrikers")
-            {
-                _strikerTransform = _raycastHit.transform;
-                _position = new Vector2(_touchPosition.x, _touchPosition.y);
-                _position = Camera.main.ScreenToWorldPoint(_position);
-                _offset.x = _strikerTransform.position.x - _position.x;
-                _offset.y = _strikerTransform.position.y - _position.y;
-                _canDrag = true;
-            }                
-        }
-
-        if (_canDrag && _touch.phase == TouchPhase.Moved)
-        {
-            _position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-            _position = Camera.main.ScreenToWorldPoint(_position);
-            _strikerTransform.position = _position + _offset;
-        }
-        if (_canDrag && (_touch.phase == TouchPhase.Ended || _touch.phase == TouchPhase.Canceled))
-            _canDrag = false;
         }
     }
 }
