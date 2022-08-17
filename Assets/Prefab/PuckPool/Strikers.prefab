@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2075923575664061532}
   - component: {fileID: 1413285380}
   - component: {fileID: 1413285381}
-  - component: {fileID: 3904091415924560997}
   m_Layer: 0
   m_Name: Strikers
   m_TagString: Strikers
@@ -122,15 +121,3 @@ CircleCollider2D:
   m_Offset: {x: -0.006030261, y: -0.014113425}
   serializedVersion: 2
   m_Radius: 0.49999997
---- !u!114 &3904091415924560997
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2075923575664061534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62821edd9bfcf4bd48626a38ff80bcc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
