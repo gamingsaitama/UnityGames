@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class Player2LifeCounter : MonoBehaviour
 {
-    public GameObject heart1, heart2, heart3, gameover;
+    public GameObject heart1, heart2, heart3,gameover;
     public static int health;
+    public static Player2LifeCounter Instance;
+
+
     void Start()
     {
-        health = 3;
-        heart1.gameObject.SetActive(true);
-        heart2.gameObject.SetActive(true);
-        heart3.gameObject.SetActive(true);
-        gameover.gameObject.SetActive(false);
+        ResetPlayer2Health();
+
+        if(Instance==null)
+        {
+            Instance = this;
+        }
     }
 
     // Update is called once per frame
@@ -44,7 +48,14 @@ public class Player2LifeCounter : MonoBehaviour
                 gameover.gameObject.SetActive(true);
                 Time.timeScale = 0;
                 break;
-
         }
+    }
+    public void ResetPlayer2Health()
+    {
+        health = 3;
+        heart1.gameObject.SetActive(true);
+        heart2.gameObject.SetActive(true);
+        heart3.gameObject.SetActive(true);
+        gameover.gameObject.SetActive(false);
     }
 }

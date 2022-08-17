@@ -20,7 +20,8 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-		Debug.Log($"_audioStatesHandler --> {audioData == null} {audioData.Count}");
+		//
+		//Debug.Log($"_audioStatesHandler --> {audioData == null} {audioData.Count}");
 	}
 
 	public GameObject SettingOption;

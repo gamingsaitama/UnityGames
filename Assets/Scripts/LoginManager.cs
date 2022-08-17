@@ -30,7 +30,7 @@ public class LoginManager : MonoBehaviour
     public Button registerbtn;
     public Button registerCnfrmbtn;
     public Button logoutbtn;
-    public static LoginManager Instance;
+    //public static LoginManager Instance;
 
     private void Start()
     {
@@ -41,11 +41,11 @@ public class LoginManager : MonoBehaviour
         registerCnfrmbtn.onClick.AddListener(OnCheckUserRegistrationData);
         logoutbtn.onClick.AddListener(LoadLoginPanel);
         
-        if(Instance==null)
+        /*if(Instance==null)
         {
             DontDestroyOnLoad(this);
             Instance = this;
-        }
+        }*/
         CheckLogInStatus();
     }
 
