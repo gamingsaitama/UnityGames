@@ -47,17 +47,17 @@ public class TouchMoveStrikers : MonoBehaviour
 
                 if (_touch.phase == TouchPhase.Moved)
                 {
-                    if (_tag == "Strikers" && _canDrag)
+                    if (_tag == "Strikers" && _canDrag && _strikerTransform.position.y < Screen.height / 2)
                     {
                         _position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
                         _position = Camera.main.ScreenToWorldPoint(_position);
-                        _strikerTransform.position = _position ;
+                        _strikerTransform.position = new Vector2(Mathf.Clamp(_position.x,0.18f-Screen.width,Screen.width-0.18f),_position.y) ;
                     }
-                    else if (_tag == "OppoStrikers" && _oppoCanDrag)
+                    else if (_tag == "OppoStrikers" && _oppoCanDrag && _strikerTransform.position.y > Screen.height / 2)
                     {
                         _oppoPosiion = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
                         _oppoPosiion = Camera.main.ScreenToWorldPoint(_oppoPosiion);
-                        _strikerTransform.position = _oppoPosiion ;
+                        _strikerTransform.position = new Vector2(Mathf.Clamp(_oppoPosiion.x, 0.18f - Screen.width, Screen.width - 0.18f), _oppoPosiion.y);
                     }
                 }
                 if (_touch.phase == TouchPhase.Ended || _touch.phase == TouchPhase.Canceled)
@@ -76,4 +76,5 @@ public class TouchMoveStrikers : MonoBehaviour
             }
         }
     }
+
 }
