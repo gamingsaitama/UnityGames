@@ -4,11 +4,9 @@ using UnityEngine;
 public class PPGameManager : MonoBehaviour
 {
     public Transform StrikerSpwanPoint;
-    private int _scoreStriker;
-    private int _scoreOppoStriker;
-    private List<GameObject> _strikerList;
-    private List<GameObject> _oppoStrikerList;
-    [SerializeField]private Vector2[] PlayerSpawnPoints;
+    private List<string> _strikerList;
+    private List<string> _oppoStrikerList;
+    [SerializeField] private Vector2[] PlayerSpawnPoints;
     [SerializeField] private Vector2[] OpponentSpawnPoints;
     [SerializeField] private GameObject Striker;
     [SerializeField] private GameObject OppoStriker;
@@ -17,6 +15,8 @@ public class PPGameManager : MonoBehaviour
     {
         SpawnStrikers(PlayerSpawnPoints);
         OppoSpawnStrikers(OpponentSpawnPoints);
+        _strikerList = new List<string>();
+        _oppoStrikerList = new List<string>();
     }
 
     private void SpawnStrikers(Vector2[] positions)
@@ -25,6 +25,7 @@ public class PPGameManager : MonoBehaviour
         {
             var prefab = Instantiate(Striker, StrikerSpwanPoint);
             prefab.transform.SetPositionAndRotation(pos, Quaternion.identity);
+            prefab.name = $"Striker_{pos}";
         }
     }
 
@@ -34,45 +35,48 @@ public class PPGameManager : MonoBehaviour
         {
             var prefab = Instantiate(OppoStriker, StrikerSpwanPoint);
             prefab.transform.SetPositionAndRotation(pos, Quaternion.identity);
+            prefab.name = $"OppoStriker_{pos}";
         }
     }
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.collider.CompareTag("Strikers") && _strikerList.Contains(collision.gameObject))
+        if (collision.CompareTag("Strikers") )
         {
-            if (collision.transform.position.y > Screen.height / 2)
+            if (collision.transform.position.y >0 && !_strikerList.Contains(collision.gameObject.name))
             {
-                _scoreStriker++;
-                _strikerList.Add(collision.gameObject);
+                _strikerList.Add(collision.gameObject.name);
+                ScoreController.Instance.Player1Scored(_strikerList.Count);
+                Debug.Log("p+1");
             }
             else
             {
-                _scoreStriker--;
-                _strikerList.Remove(collision.gameObject);
+                _strikerList.Remove(collision.gameObject.name);
+                ScoreController.Instance.Player1Scored(_strikerList.Count);
+                Debug.Log("p-1");
             }
 
         }
-        else if (collision.collider.CompareTag("OppoStrikers") && _oppoStrikerList.Contains(collision.gameObject))
+        else if (collision.CompareTag("OppoStrikers") )
         {
-            if (collision.transform.position.y < Screen.height / 2)
+            if (collision.transform.position.y < 0 && !_oppoStrikerList.Contains(collision.gameObject.name))
             {
-                _scoreOppoStriker++;
-                _oppoStrikerList.Add(collision.gameObject);
+                _oppoStrikerList.Add(collision.gameObject.name);
+                ScoreController.Instance.Player2Scored(_oppoStrikerList.Count);
+                Debug.Log("op+1");
             }
             else
             {
-                _scoreOppoStriker--;
-                _oppoStrikerList.Remove(collision.gameObject);
+                _oppoStrikerList.Remove(collision.gameObject.name);
+                ScoreController.Instance.Player2Scored(_oppoStrikerList.Count);
+                Debug.Log("op-1");
             }
         }
     }
 
     public void ResetScore()
     {
-        _strikerList = new List<GameObject>();
-        _oppoStrikerList = new List<GameObject>();
-        _scoreStriker = 0;
-        _scoreOppoStriker = 0;
+        _strikerList = new List<string>();
+        _oppoStrikerList = new List<string>();
     }
 }
 
