@@ -49,18 +49,17 @@ public class TouchMoveStrikers : MonoBehaviour
                 {
                     if (_tag == "Strikers" && _canDrag )
                     {
-                        ///Debug.Log("striker......... "+ _strikerTransform.position.y);
                         _position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
                         _position = Camera.main.ScreenToWorldPoint(_position);
-                        _strikerTransform.position = new Vector2(Mathf.Clamp(_position.x,-1.78f,1.78f),
-                                                    Mathf.Clamp(_position.y,-4f,-0.6f)) ;
+                        _strikerTransform.position = new Vector2(Mathf.Clamp(_position.x, -1.78f, 1.78f),
+                                                    Mathf.Clamp(_position.y,-3.54f,-0.6f)) ;
                     }
                     else if (_tag == "OppoStrikers" && _oppoCanDrag && _strikerTransform.position.y > 0.4)
                     {
                         _oppoPosiion = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
                         _oppoPosiion = Camera.main.ScreenToWorldPoint(_oppoPosiion);
                         _strikerTransform.position = new Vector2(Mathf.Clamp(_oppoPosiion.x, -1.78f, 1.78f),
-                                                     Mathf.Clamp(_oppoPosiion.y, 0.6f, 4f));
+                                                     Mathf.Clamp(_oppoPosiion.y, 0.6f, 3.54f));
                     }
                 }
                 if (_touch.phase == TouchPhase.Ended || _touch.phase == TouchPhase.Canceled)
