@@ -42,17 +42,15 @@ public class PPGameManager : MonoBehaviour
     {
         if (collision.CompareTag("Strikers") )
         {
-            if (collision.transform.position.y >0 && !_strikerList.Contains(collision.gameObject.name))
+            if (collision.transform.position.y > 0 && !_strikerList.Contains(collision.gameObject.name))
             {
                 _strikerList.Add(collision.gameObject.name);
                 ScoreController.Instance.Player1Scored(_strikerList.Count);
-                Debug.Log("p+1");
             }
-            else
+            else if(collision.transform.position.y < 0 && _strikerList.Contains(collision.gameObject.name))
             {
                 _strikerList.Remove(collision.gameObject.name);
                 ScoreController.Instance.Player1Scored(_strikerList.Count);
-                Debug.Log("p-1");
             }
 
         }
@@ -62,21 +60,13 @@ public class PPGameManager : MonoBehaviour
             {
                 _oppoStrikerList.Add(collision.gameObject.name);
                 ScoreController.Instance.Player2Scored(_oppoStrikerList.Count);
-                Debug.Log("op+1");
             }
-            else
+            else if (collision.transform.position.y > 0 && _oppoStrikerList.Contains(collision.gameObject.name))
             {
                 _oppoStrikerList.Remove(collision.gameObject.name);
                 ScoreController.Instance.Player2Scored(_oppoStrikerList.Count);
-                Debug.Log("op-1");
             }
         }
-    }
-
-    public void ResetScore()
-    {
-        _strikerList = new List<string>();
-        _oppoStrikerList = new List<string>();
     }
 }
 

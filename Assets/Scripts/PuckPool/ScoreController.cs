@@ -1,17 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
 
-public class ScoreController : MonoBehaviour
+public class ScoreController : UIManager
 {
     [Header("Score UI")]
     [SerializeField] private TextMeshProUGUI Player1Text;
     [SerializeField] private TextMeshProUGUI Player2Text;
     public static ScoreController Instance;
 
-    private void Start()
+    private void Awake()
     {
         if (Instance == null)
         {
@@ -22,10 +19,22 @@ public class ScoreController : MonoBehaviour
     public void Player1Scored(int _Player1Score)
     {
         Player1Text.text = _Player1Score.ToString();
+        if (_Player1Score >= 5)
+        {
+            Player1Text.text = "Won";
+            Player2Text.text = "Lost";
+            Invoke("RestartGame",1f);
+        }
     }
 
     public void Player2Scored(int _Player2Score)
     {
         Player2Text.text = _Player2Score.ToString();
+        if (_Player2Score>=5)
+        {
+            Player1Text.text = "Lost";
+            Player2Text.text = "Won";
+            Invoke("RestartGame", 1f);
+        }
     }
 }

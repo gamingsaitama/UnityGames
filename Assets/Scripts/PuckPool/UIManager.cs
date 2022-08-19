@@ -21,7 +21,7 @@ public class UIManager : MonoBehaviour
     {
         PausePanel.SetActive(false);
         Time.timeScale = 1;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().ToString());
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void ReturnToHome()
