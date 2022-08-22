@@ -6,9 +6,7 @@
             "sceneName": "pingpong",
             "iconpath" : "GamesIcon/PingPong",
             "isGameInLandscape": true
-        }
-    ],
-    [
+        },
         {
             "id": "81db1da0-3a99-4835-9874-72b6d25ac73a",
             "gameName": "Puck_Pool",
