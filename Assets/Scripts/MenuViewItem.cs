@@ -20,7 +20,7 @@ public class MenuViewItem : MonoBehaviour
     public Slider loadingBar;
     public Text loadingText;
 
-    private string GameDataUrl = "https://raw.githubusercontent.com/AmDce/UnityGames/main/demoJSON.json";
+    private string GameDataUrl = "https://raw.githubusercontent.com/PradeepHGK/UnityGames/main/demoJSON.json";
 
     void Start()
     {

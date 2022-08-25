@@ -1,81 +1,72 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TouchMoveStrikers : MonoBehaviour
 {
-    Transform _strikerTransform;
-    //Vector2 _offset;
-    bool _canDrag = false;
-    bool _oppoCanDrag = false;
-    string _tag;
+    RaycastHit2D hit;
+    Vector2[] touches = new Vector2[10];
+
+    List<TouchObjects> touchObjects = new List<TouchObjects>();
 
     void Update()
     {
-        Vector2 _position;
-        Vector2 _oppoPosiion;
-        if (Input.touchCount > 0)
+        try
         {
-            for (int i = 0; i < Input.touchCount; i++)
+            if (Input.touchCount > 0)
             {
-                Touch _touch = Input.touches[i];
-                Vector2 _touchPosition = _touch.position;
+                foreach (Touch t in Input.touches)
+                {
+                    touches[t.fingerId] = Camera.main.ScreenToWorldPoint(Input.GetTouch(t.fingerId).position);
+                    if (Input.GetTouch(t.fingerId).phase == TouchPhase.Began)
+                    {
+                        hit = Physics2D.Raycast(touches[t.fingerId], Vector2.zero);
 
-                if (_touch.phase == TouchPhase.Began)
-                {
-                    Ray _ray = Camera.main.ScreenPointToRay(_touchPosition);
-                    RaycastHit2D _raycastHit = Physics2D.Raycast(_ray.origin, -Vector2.up);
-                    if (_touchPosition.y < Screen.height / 2 && _raycastHit.collider.tag == "Strikers")
-                    {
-                        _tag = _raycastHit.collider.tag;
-                        _strikerTransform = _raycastHit.transform;
-                       // _position = new Vector2(_touchPosition.x, _touchPosition.y);
-                        //_position = Camera.main.ScreenToWorldPoint(_position);
-                        //_offset.x = _strikerTransform.position.x - _position.x;
-                        //_offset.y = _strikerTransform.position.y - _position.y;
-                        _canDrag = true;
+                        if (hit)
+                        {
+                            touchObjects.Add(new TouchObjects(hit.transform.gameObject, t.fingerId));
+                        }
                     }
-                    else if(_touchPosition.y > Screen.height / 2 && _raycastHit.collider.tag == "OppoStrikers")
+                    else if (Input.GetTouch(t.fingerId).phase == TouchPhase.Moved)
                     {
-                        _tag = _raycastHit.collider.tag;
-                        _strikerTransform = _raycastHit.transform;
-                        //_oppoPosiion = new Vector2(_touchPosition.x, _touchPosition.y);
-                        //_oppoPosiion = Camera.main.ScreenToWorldPoint(_oppoPosiion);
-                       // _offset.x = _strikerTransform.position.x - _oppoPosiion.x;
-                        //_offset.y = _strikerTransform.position.y - _oppoPosiion.y;
-                        _oppoCanDrag = true;
-                    }
-                }
+                        TouchObjects touchObj = touchObjects.Find(touch => touch.fingerID == t.fingerId);
+                        if (touches[t.fingerId].y < -0.4 && touchObj.selectedItem.CompareTag("Strikers"))
+                        {
+                            touchObj.selectedItem.transform.position = new Vector2(Mathf.Clamp(touches[t.fingerId].x, -1.78f, 1.78f),
+                                                            Mathf.Clamp(touches[t.fingerId].y, -3.54f, -0.6f));
+                        }
 
-                if (_touch.phase == TouchPhase.Moved)
-                {
-                    if (_tag == "Strikers" && _canDrag )
-                    {
-                        _position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-                        _position = Camera.main.ScreenToWorldPoint(_position);
-                        _strikerTransform.position = new Vector2(Mathf.Clamp(_position.x, -1.78f, 1.78f),
-                                                    Mathf.Clamp(_position.y,-3.54f,-0.6f)) ;
+                        else if (touches[t.fingerId].y > 0.4 && touchObj.selectedItem.CompareTag("OppoStrikers"))
+                        {
+                            touchObj.selectedItem.transform.position = new Vector2(Mathf.Clamp(touches[t.fingerId].x, -1.78f, 1.78f),
+                                                       Mathf.Clamp(touches[t.fingerId].y, 0.6f, 3.54f));
+                        }
                     }
-                    else if (_tag == "OppoStrikers" && _oppoCanDrag && _strikerTransform.position.y > 0.4)
+                    else if (Input.GetTouch(t.fingerId).phase == TouchPhase.Ended)
                     {
-                        _oppoPosiion = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-                        _oppoPosiion = Camera.main.ScreenToWorldPoint(_oppoPosiion);
-                        _strikerTransform.position = new Vector2(Mathf.Clamp(_oppoPosiion.x, -1.78f, 1.78f),
-                                                     Mathf.Clamp(_oppoPosiion.y, 0.6f, 3.54f));
+                        TouchObjects touchObj = touchObjects.Find(touch => touch.fingerID == t.fingerId);
+                        touchObjects.RemoveAt(touchObjects.IndexOf(touchObj));
                     }
-                }
-                if (_touch.phase == TouchPhase.Ended || _touch.phase == TouchPhase.Canceled)
-                {
-                    if (_canDrag && _tag == "Strikers")
-                    {
-                        _canDrag = false;
-                        _tag = "";
-                    }
-                    else if (_oppoCanDrag && _tag == "OppoStrikers")
-                    {
-                        _oppoCanDrag = false;
-                        _tag = "";
-                    }                    
                 }
             }
+        }
+        catch (Exception ex)
+        {
+            Debug.Log(ex.Message);
+        }
+    }
+    [Serializable]
+    public class TouchObjects
+    {
+        public GameObject selectedItem;
+        public int fingerID;
+        public Vector2 initPos;
+
+        public TouchObjects(GameObject objSelected, int newFingerId)
+        {
+            fingerID = newFingerId;
+            selectedItem = objSelected;
+            initPos = objSelected.transform.position;
         }
     }
 
