@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PingPong.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/PuckPool.unity
+    guid: 2c7681b3b13e140b79899067d31ba3c6
   m_configObjects: {}
