@@ -20,7 +20,7 @@ public class SlingBounce : TouchMoveStrikers
                 }
                 else if (collision.transform.tag == "OppoStrikers")
                 {
-                    TouchObjects opptouchObjects = _touchObjects.Find(touch => touch.fingerID == _touch.fingerId);
+                    TouchObjects opptouchObjects = _opptouchObjects.Find(touch => touch.fingerID == _touch.fingerId);
                     if (_touch.phase == TouchPhase.Ended && _touch.position.y > Screen.height / 2 && opptouchObjects.selectedItem == collision.gameObject)
                     {
                         collision.gameObject.GetComponent<Rigidbody2D>().AddForce(-Vector2.up * BounceForce, ForceMode2D.Impulse);
