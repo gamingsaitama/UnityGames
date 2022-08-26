@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SlingBounce : MonoBehaviour
+public class SlingBounce : TouchMoveStrikers
 {
     public float BounceForce;
 
@@ -8,18 +8,20 @@ public class SlingBounce : MonoBehaviour
     {
         if (Input.touchCount > 0)
         {
-            foreach (var _touch in Input.touches)
+            foreach (Touch _touch in Input.touches)
             {
-                if (collision.transform.tag == "Strikers")
+                if (collision.transform.tag == "Strikers"  )
                 {
-                    if (_touch.phase == TouchPhase.Ended && _touch.position.y < Screen.height / 2)
+                    TouchObjects touchObjects = _touchObjects.Find(touch => touch.fingerID == _touch.fingerId);
+                    if (_touch.phase == TouchPhase.Ended && _touch.position.y < Screen.height / 2 && touchObjects.selectedItem == collision.gameObject)
                     {
                         collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * BounceForce, ForceMode2D.Impulse);
                     }
                 }
                 else if (collision.transform.tag == "OppoStrikers")
                 {
-                    if (_touch.phase == TouchPhase.Ended && _touch.position.y > Screen.height / 2)
+                    TouchObjects opptouchObjects = _touchObjects.Find(touch => touch.fingerID == _touch.fingerId);
+                    if (_touch.phase == TouchPhase.Ended && _touch.position.y > Screen.height / 2 && opptouchObjects.selectedItem == collision.gameObject)
                     {
                         collision.gameObject.GetComponent<Rigidbody2D>().AddForce(-Vector2.up * BounceForce, ForceMode2D.Impulse);
                     }
