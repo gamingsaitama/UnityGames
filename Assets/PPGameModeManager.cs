@@ -58,7 +58,7 @@ public class PPGameModeManager : MonoBehaviourPunCallbacks
         FriendsPanel.SetActive(false);
         RoomOptions roomOptions = SetRoomProps();
         string id = GenerateRoomId(_friendsLobby.Name + "_");
-        UIManager.Instance.ShowRoomNumber(id.Substring(9));
+        UIManager.Instance.ShowRoomNumber(id.Substring(8));
         PhotonNetwork.CreateRoom(id, roomOptions, _friendsLobby);
     }
 
