@@ -47,7 +47,7 @@ public class UIManager : MonoBehaviour
 
     public void ShowRoomNumber(string rNo)
     {
-        ShowRoomField.text = rNo;
+        ShowRoomField.text = "Room Number: "+rNo;
     }
 
     public string GetRoomNumber()
