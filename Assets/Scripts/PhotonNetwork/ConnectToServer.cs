@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
-using UnityEngine.SceneManagement;
 
 public class ConnectToServer : MonoBehaviourPunCallbacks
 {
@@ -14,10 +11,11 @@ public class ConnectToServer : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         PhotonNetwork.JoinLobby();
+        Debug.Log("Connected to master");
     }
     public override void OnJoinedLobby()
     {
-        SceneManager.LoadScene("Lobby");
+        Debug.Log("Connected Lobby...");
     }
    
 }
