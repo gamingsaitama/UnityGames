@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 
-public class ScoreController : UIManager
+public class ScoreController : MonoBehaviour
 {
     [Header("Score UI")]
     [SerializeField] private TextMeshProUGUI Player1Text;
@@ -36,5 +36,10 @@ public class ScoreController : UIManager
             Player2Text.text = "Won";
             Invoke("RestartGame", 1f);
         }
+    }
+
+    private void RestartGame()
+    {
+        UIManager.Instance.RestartGame();
     }
 }

@@ -1,4 +1,3 @@
-using Photon.Pun;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -6,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private GameObject PausePanel;
-    public TMP_InputField JoinRoomField;
+    [SerializeField] private TMP_InputField JoinRoomField;
     [SerializeField] private TextMeshProUGUI ShowRoomField;
     public static UIManager Instance;
 
@@ -32,7 +31,7 @@ public class UIManager : MonoBehaviour
     public void RestartGame()
     {
         PausePanel.SetActive(false);
-        PhotonNetwork.LeaveLobby();
+        PPGameModeManager.Instance.LeaveRoomAndLobby();
         Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
@@ -40,7 +39,7 @@ public class UIManager : MonoBehaviour
     public void ReturnToHome()
     {
         PausePanel.SetActive(false);
-        PhotonNetwork.LeaveLobby();
+        PPGameModeManager.Instance.LeaveRoomAndLobby();
         Time.timeScale = 1;
         SceneManager.LoadScene("Menu Scene");
     }
@@ -48,6 +47,12 @@ public class UIManager : MonoBehaviour
     public void ShowRoomNumber(string rNo)
     {
         ShowRoomField.text = "Room Number: "+rNo;
+    }
+
+    public void DisplayMessage(string message)
+    {
+        JoinRoomField.gameObject.SetActive(true);
+        ShowRoomField.text = message;
     }
 
     public string GetRoomNumber()

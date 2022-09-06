@@ -3,6 +3,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
+using System.Collections;
 
 public class PPGameModeManager : MonoBehaviourPunCallbacks
 {
@@ -10,46 +11,103 @@ public class PPGameModeManager : MonoBehaviourPunCallbacks
     public GameObject LoadingPanel;
     public GameObject FriendsPanel;
     public GameObject GameModePanel;
-    public Button Friend, PassNPlay, Online, FriendsCreateRoom, FriendsJoinRoom;
+    public Button Friend, PassNPlay, Online, FriendsCreateRoom, FriendsJoinRoom,BackButton;
     private TypedLobby _friendsLobby;
     private TypedLobby _onlineLobby;
     private static int _maxPlayer = 2;
+    public static PPGameModeManager Instance;
+
+    private void Awake()
+    {
+        if (Instance != null)
+            return;
+        Instance = this;
+    }
 
     private void Start()
     {
         LoadingPanel.SetActive(true);
-        _friendsLobby = new TypedLobby("Friends",LobbyType.Default);
-        _onlineLobby = new TypedLobby("Online",LobbyType.Default);
-        Friend.onClick.AddListener(() => OnClickFriendsName());
-        PassNPlay.onClick.AddListener(() => OnClickPassNPlay());
-        Online.onClick.AddListener(() => OnClickOnlineMode());
-        FriendsCreateRoom.onClick.AddListener(() => CreateFriendsRoom());
-        FriendsJoinRoom.onClick.AddListener(() => JoinFriendsRoom());
+        _friendsLobby = new TypedLobby("Friends", LobbyType.Default);
+        _onlineLobby = new TypedLobby("Online", LobbyType.Default);
+        Friend.onClick.AddListener(OnClickFriendsName);
+        PassNPlay.onClick.AddListener(OnClickPassNPlay);
+        Online.onClick.AddListener(OnClickOnlineMode);
+        FriendsCreateRoom.onClick.AddListener(CreateFriendsRoom);
+        FriendsJoinRoom.onClick.AddListener(JoinFriendsRoom);
+        BackButton.onClick.AddListener(OnClickBackButton);
+        if (PhotonNetwork.InLobby)
+        {
+            LoadingPanel.SetActive(false);
+        }
     }
 
     private RoomOptions SetRoomProps()
     {
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.IsOpen = true;
-        roomOptions.IsVisible = false;
+        roomOptions.IsVisible = true;
         roomOptions.PublishUserId = true;
         roomOptions.MaxPlayers = (byte)_maxPlayer;
+        roomOptions.CustomRoomProperties = new ExitGames.Client.Photon.Hashtable();
         return roomOptions;
     }
 
-    public void OnClickOnlineMode()
+    private void OnClickOnlineMode()
+    {
+        if (PhotonNetwork.JoinLobby(_onlineLobby))
+        {
+            StartOnlinemode();
+        }
+        else
+        {
+            Debug.Log($"Joining lobby failed");
+        }
+    }
+
+    private void StartOnlinemode()
     {
         GameModePanel.SetActive(false);
         LoadingPanel.SetActive(true);
-        UIManager.Instance.JoinRoomField.gameObject.SetActive(false);
         RoomOptions roomOptions = SetRoomProps();
-        PhotonNetwork.JoinRandomOrCreateRoom(expectedMaxPlayers:2,matchingType:MatchmakingMode.FillRoom,typedLobby:_onlineLobby,roomOptions:roomOptions);
+        roomOptions.CustomRoomProperties.Add("type", _onlineLobby.Name);
+        if (PhotonNetwork.CountOfRooms > 0)
+        {
+            JoiningRoom(null, roomOptions, _onlineLobby);
+        }
+        else
+        {
+            RoomCreation(roomOptions, _onlineLobby);
+        }
     }
 
-    public void OnClickFriendsName()
+    private void RoomCreation(RoomOptions roomOptions, TypedLobby lobbyType, string roomName = null)
     {
-        GameModePanel.SetActive(false);
-        FriendsPanel.SetActive(true);
+        PhotonNetwork.CreateRoom(roomName, roomOptions, lobbyType);
+    }
+
+    private void JoiningRoom(string roomName, RoomOptions roomOptions = null, TypedLobby lobbyType = null)
+    {
+        if (lobbyType != null)
+        {
+            PhotonNetwork.JoinOrCreateRoom(roomName, roomOptions, lobbyType);
+        }
+        else
+        {
+            PhotonNetwork.JoinRoom(roomName);
+        }
+    }
+
+    private void OnClickFriendsName()
+    {
+        if (PhotonNetwork.JoinLobby(_onlineLobby))
+        {
+            GameModePanel.SetActive(false);
+            FriendsPanel.SetActive(true);
+        }
+        else
+        {
+            Debug.Log($"Joining lobby failed");
+        }
     }
 
     private void CreateFriendsRoom()
@@ -57,40 +115,72 @@ public class PPGameModeManager : MonoBehaviourPunCallbacks
         LoadingPanel.SetActive(true);
         FriendsPanel.SetActive(false);
         RoomOptions roomOptions = SetRoomProps();
+        roomOptions.CustomRoomProperties.Add("type", _friendsLobby.Name);
         string id = GenerateRoomId(_friendsLobby.Name + "_");
         UIManager.Instance.ShowRoomNumber(id.Substring(8));
-        PhotonNetwork.CreateRoom(id, roomOptions, _friendsLobby);
+        RoomCreation(roomOptions, _friendsLobby, id);
     }
 
-    public void JoinFriendsRoom()
+    private void JoinFriendsRoom()
     {
         string id = UIManager.Instance.GetRoomNumber();
         if (!string.IsNullOrEmpty(id))
         {
             LoadingPanel.SetActive(true);
-            PhotonNetwork.JoinRoom(_friendsLobby.Name+id);
+            JoiningRoom(_friendsLobby.Name + id);
             FriendsPanel.SetActive(false);
         }
         else
         {
             Debug.Log("not valid roomid");
+            StartCoroutine(DisplayMessage("not valid roomid"));
         }
     }
 
-    public void OnClickPassNPlay()
+    private void OnClickPassNPlay()
     {
         GameModePanel.SetActive(false);
     }
 
     private string GenerateRoomId(string type)
     {
-        int id = Random.Range(10000,99999);
+        int id = Random.Range(10000, 99999);
         return type + id;
     }
 
+    private IEnumerator DisplayMessage(string message)
+    {
+        LoadingPanel.SetActive(true);
+        UIManager.Instance.DisplayMessage(message);
+        yield return new WaitForSeconds(3f);
+        LoadingPanel.SetActive(false);
+    }
+
+    public void LeaveRoomAndLobby()
+    {
+        if (PhotonNetwork.CurrentRoom != null)
+            PhotonNetwork.LeaveRoom();
+        if (PhotonNetwork.CurrentLobby != null)
+            PhotonNetwork.LeaveLobby();
+    }
+
+    private void OnClickBackButton()
+    {
+        GameModePanel.SetActive(true);
+        FriendsPanel.SetActive(false);
+    }
+
+    #region PhotonCallBacks
+
     public override void OnJoinedRoom()
     {
-        Debug.Log(".....");
+        Debug.Log($".....");
+        if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
+        {
+            Debug.Log("atharashi player oredha...");
+            LoadingPanel.SetActive(false);
+            PhotonNetwork.CurrentRoom.IsOpen = false;
+        }
     }
 
     public override void OnJoinedLobby()
@@ -98,13 +188,36 @@ public class PPGameModeManager : MonoBehaviourPunCallbacks
         LoadingPanel.SetActive(false);
     }
 
+    public override void OnCreatedRoom()
+    {
+        Debug.Log("Room created " + PhotonNetwork.IsMasterClient);
+    }
+
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
+        Debug.Log($"..... {PhotonNetwork.PlayerListOthers[0].UserId}");
         if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
         {
+            Debug.Log("atharashi player hayetha...");
             LoadingPanel.SetActive(false);
             PhotonNetwork.CurrentRoom.IsOpen = false;
         }
     }
+    public override void OnJoinRoomFailed(short returnCode, string message)
+    {
+        Debug.Log($"{returnCode} .. {message}..");
+        GameModePanel.SetActive(true);
+        StartCoroutine(DisplayMessage(message));
+    }
 
+    public override void OnJoinRandomFailed(short returnCode, string message)
+    {
+        Debug.Log($"{returnCode} .. {message} .. Randomroom");
+    }
+
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        Debug.Log("player left room... " + otherPlayer.NickName);
+    }
+    #endregion
 }
