@@ -99,7 +99,7 @@ public class PPGameModeManager : MonoBehaviourPunCallbacks
 
     private void OnClickFriendsName()
     {
-        if (PhotonNetwork.JoinLobby(_onlineLobby))
+        if (PhotonNetwork.JoinLobby(_friendsLobby))
         {
             GameModePanel.SetActive(false);
             FriendsPanel.SetActive(true);
@@ -177,7 +177,7 @@ public class PPGameModeManager : MonoBehaviourPunCallbacks
         Debug.Log($".....");
         if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
         {
-            Debug.Log("atharashi player oredha...");
+            Debug.Log("i am the new player...");
             LoadingPanel.SetActive(false);
             PhotonNetwork.CurrentRoom.IsOpen = false;
         }
@@ -198,7 +198,7 @@ public class PPGameModeManager : MonoBehaviourPunCallbacks
         Debug.Log($"..... {PhotonNetwork.PlayerListOthers[0].UserId}");
         if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
         {
-            Debug.Log("atharashi player hayetha...");
+            Debug.Log("new player have joined the room...");
             LoadingPanel.SetActive(false);
             PhotonNetwork.CurrentRoom.IsOpen = false;
         }
