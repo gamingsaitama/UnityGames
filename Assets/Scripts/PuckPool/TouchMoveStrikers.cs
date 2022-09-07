@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 public class TouchMoveStrikers : MonoBehaviour
@@ -9,8 +10,28 @@ public class TouchMoveStrikers : MonoBehaviour
 
     protected List<TouchObjects> _touchObjects = new List<TouchObjects>();
     protected List<TouchObjects> _opptouchObjects = new List<TouchObjects>();
+    private PhotonView View;
 
+    private void Start()
+    {
+        View = GetComponent<PhotonView>();
+    }
     void Update()
+    {
+        if (PhotonNetwork.InRoom && PhotonNetwork.CurrentRoom.PlayerCount==2)
+        {
+            if (View.IsMine)
+            {
+                MoveStrikers();
+            }
+        }
+        else
+        {
+            MoveStrikers();
+        }
+    }
+
+    private void MoveStrikers()
     {
         try
         {
