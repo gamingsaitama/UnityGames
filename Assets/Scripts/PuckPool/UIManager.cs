@@ -59,4 +59,9 @@ public class UIManager : MonoBehaviour
     {
         return JoinRoomField.text;
     }
+
+    public void RemoveMessage()
+    {
+        ShowRoomField.text = "";
+    }
 }
