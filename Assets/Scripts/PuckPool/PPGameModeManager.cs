@@ -74,7 +74,7 @@ public class PPGameModeManager : MonoBehaviourPunCallbacks
         }
     }
 
-    private void RoomCreation(RoomOptions roomOptions, TypedLobby lobbyType, string roomName = null)
+    private void RoomCreation(RoomOptions roomOptions, TypedLobby lobbyType, string roomName)
     {
         PhotonNetwork.CreateRoom(roomName, roomOptions, lobbyType);
         LoadingPanel.SetActive(true);
@@ -136,6 +136,7 @@ public class PPGameModeManager : MonoBehaviourPunCallbacks
     private void OnClickPassNPlay()
     {
         GameModePanel.SetActive(false);
+        PPGameManager.Instance.IsPassNPlay = true;
         PPGameManager.Instance.SpawnStrikers(PPGameManager.Instance.PlayerSpawnPoints);
         PPGameManager.Instance.OppoSpawnStrikers(PPGameManager.Instance.OpponentSpawnPoints);
     }

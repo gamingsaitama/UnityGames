@@ -11,6 +11,8 @@ public class PPGameManager : MonoBehaviourPunCallbacks
     public Vector2[] OpponentSpawnPoints;
     [SerializeField] private GameObject Striker;
     [SerializeField] private GameObject OppoStriker;
+    public bool IsGreen;
+    public bool IsPassNPlay;
     public static PPGameManager Instance;
 
     private void Start()
@@ -24,13 +26,16 @@ public class PPGameManager : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
+        IsPassNPlay = false;
         if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
         {
             SpawnStrikers(PlayerSpawnPoints);
+            IsGreen = true;
         }
         else if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
         {
             OppoSpawnStrikers(OpponentSpawnPoints);
+            IsGreen = false;
         }
     }
 
