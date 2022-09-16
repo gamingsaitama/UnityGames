@@ -26,26 +26,12 @@ public class SlingBounce : TouchMoveStrikers
                 {
                     foreach (Touch _touch in Input.touches)
                     {
-                        if (PPGameManager.Instance.IsRotated)
+                        if (collision.transform.tag == "Strikers")
                         {
-                            if (collision.transform.tag == "OppoStrikers")
+                            TouchObjects touchObjects = _touchObjects.Find(touch => touch.fingerID == _touch.fingerId);
+                            if (touchObjects != null && _touch.phase == TouchPhase.Ended && _touch.position.y < Screen.height / 2 && collision.gameObject == touchObjects.selectedItem)
                             {
-                                TouchObjects touchObjects = _touchObjects.Find(touch => touch.fingerID == _touch.fingerId);
-                                if (touchObjects != null && _touch.phase == TouchPhase.Ended && _touch.position.y < Screen.height / 2 && collision.gameObject == touchObjects.selectedItem)
-                                {
-                                    collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * BounceForce, ForceMode2D.Impulse);
-                                }
-                            }
-                        }
-                        else
-                        {
-                            if (collision.transform.tag == "Strikers")
-                            {
-                                TouchObjects touchObjects = _touchObjects.Find(touch => touch.fingerID == _touch.fingerId);
-                                if (touchObjects != null && _touch.phase == TouchPhase.Ended && _touch.position.y < Screen.height / 2 && collision.gameObject == touchObjects.selectedItem)
-                                {
-                                    collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * BounceForce, ForceMode2D.Impulse);
-                                }
+                                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * BounceForce, ForceMode2D.Impulse);
                             }
                         }
 
@@ -64,26 +50,13 @@ public class SlingBounce : TouchMoveStrikers
                 {
                     foreach (Touch _touch in Input.touches)
                     {
-                        if (PPGameManager.Instance.IsRotated)
+
+                        if (collision.transform.tag == "OppoStrikers")
                         {
-                            if (collision.transform.tag == "Strikers")
+                            TouchObjects opptouchObjects = _opptouchObjects.Find(touch => touch.fingerID == _touch.fingerId);
+                            if (opptouchObjects != null && _touch.phase == TouchPhase.Ended && _touch.position.y > Screen.height / 2 && collision.gameObject == opptouchObjects.selectedItem)
                             {
-                                TouchObjects opptouchObjects = _opptouchObjects.Find(touch => touch.fingerID == _touch.fingerId);
-                                if (opptouchObjects != null && _touch.phase == TouchPhase.Ended && _touch.position.y > Screen.height / 2 && collision.gameObject == opptouchObjects.selectedItem)
-                                {
-                                    collision.gameObject.GetComponent<Rigidbody2D>().AddForce(-Vector2.up * BounceForce, ForceMode2D.Impulse);
-                                }
-                            }
-                        }
-                        else
-                        {
-                            if (collision.transform.tag == "OppoStrikers")
-                            {
-                                TouchObjects opptouchObjects = _opptouchObjects.Find(touch => touch.fingerID == _touch.fingerId);
-                                if (opptouchObjects != null && _touch.phase == TouchPhase.Ended && _touch.position.y > Screen.height / 2 && collision.gameObject == opptouchObjects.selectedItem)
-                                {
-                                    collision.gameObject.GetComponent<Rigidbody2D>().AddForce(-Vector2.up * BounceForce, ForceMode2D.Impulse);
-                                }
+                                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(-Vector2.up * BounceForce, ForceMode2D.Impulse);
                             }
                         }
                     }

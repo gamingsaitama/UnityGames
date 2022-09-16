@@ -137,7 +137,6 @@ public class PPGameModeManager : MonoBehaviourPunCallbacks
     {
         GameModePanel.SetActive(false);
         PPGameManager.Instance.IsPassNPlay = true;
-        PPGameManager.Instance.IsRotated = false;
         PPGameManager.Instance.SpawnStrikers(PPGameManager.Instance.PlayerSpawnPoints);
         PPGameManager.Instance.OppoSpawnStrikers(PPGameManager.Instance.OpponentSpawnPoints);
     }
