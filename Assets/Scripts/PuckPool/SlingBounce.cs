@@ -29,9 +29,9 @@ public class SlingBounce : TouchMoveStrikers
                         if (collision.transform.tag == "Strikers")
                         {
                             TouchObjects touchObjects = _touchObjects.Find(touch => touch.fingerID == _touch.fingerId);
-                            if (touchObjects != null && _touch.phase == TouchPhase.Ended && _touch.position.y < Screen.height / 2 && collision.gameObject == touchObjects.selectedItem)
+                            if (touchObjects != null && _touch.phase == TouchPhase.Ended && _touch.position.x > Screen.width / 2 && collision.gameObject == touchObjects.selectedItem)
                             {
-                                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * BounceForce, ForceMode2D.Impulse);
+                                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.left * BounceForce, ForceMode2D.Impulse);
                             }
                         }
 
@@ -54,9 +54,9 @@ public class SlingBounce : TouchMoveStrikers
                         if (collision.transform.tag == "OppoStrikers")
                         {
                             TouchObjects opptouchObjects = _opptouchObjects.Find(touch => touch.fingerID == _touch.fingerId);
-                            if (opptouchObjects != null && _touch.phase == TouchPhase.Ended && _touch.position.y > Screen.height / 2 && collision.gameObject == opptouchObjects.selectedItem)
+                            if (opptouchObjects != null && _touch.phase == TouchPhase.Ended && _touch.position.x < Screen.width / 2 && collision.gameObject == opptouchObjects.selectedItem)
                             {
-                                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(-Vector2.up * BounceForce, ForceMode2D.Impulse);
+                                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.right * BounceForce, ForceMode2D.Impulse);
                             }
                         }
                     }
@@ -76,17 +76,17 @@ public class SlingBounce : TouchMoveStrikers
                 if (collision.transform.tag == "Strikers")
                 {
                     TouchObjects touchObjects = _touchObjects.Find(touch => touch.fingerID == _touch.fingerId);
-                    if (touchObjects != null && _touch.phase == TouchPhase.Ended && _touch.position.y < Screen.height / 2 && collision.gameObject == touchObjects.selectedItem)
+                    if (touchObjects != null && _touch.phase == TouchPhase.Ended && _touch.position.x > Screen.width / 2 && collision.gameObject == touchObjects.selectedItem)
                     {
-                        collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * BounceForce, ForceMode2D.Impulse);
+                        collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.left * BounceForce, ForceMode2D.Impulse);
                     }
                 }
                 if (collision.transform.tag == "OppoStrikers")
                 {
                     TouchObjects opptouchObjects = _opptouchObjects.Find(touch => touch.fingerID == _touch.fingerId);
-                    if (opptouchObjects != null && _touch.phase == TouchPhase.Ended && _touch.position.y > Screen.height / 2 && collision.gameObject == opptouchObjects.selectedItem)
+                    if (opptouchObjects != null && _touch.phase == TouchPhase.Ended && _touch.position.x < Screen.width / 2 && collision.gameObject == opptouchObjects.selectedItem)
                     {
-                        collision.gameObject.GetComponent<Rigidbody2D>().AddForce(-Vector2.up * BounceForce, ForceMode2D.Impulse);
+                        collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.right * BounceForce, ForceMode2D.Impulse);
                     }
                 }
             }

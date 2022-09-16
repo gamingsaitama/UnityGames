@@ -4,6 +4,7 @@ using Photon.Realtime;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 using System.Collections;
+using UnityEngine.Events;
 
 public class PPGameModeManager : MonoBehaviourPunCallbacks
 {
@@ -11,7 +12,8 @@ public class PPGameModeManager : MonoBehaviourPunCallbacks
     public GameObject LoadingPanel;
     public GameObject FriendsPanel;
     public GameObject GameModePanel;
-    public Button Friend, PassNPlay, Online, FriendsCreateRoom, FriendsJoinRoom, BackButton, CloseRoomButton;
+    public Button Friend, PassNPlay, Online, FriendsCreateRoom, FriendsJoinRoom, BackButton,
+        CloseRoomButton, PauseButton,ResumeButton, HomeButton, RestartButton;
     private TypedLobby _friendsLobby;
     private TypedLobby _onlineLobby;
     private static int _maxPlayer = 2;
@@ -36,10 +38,30 @@ public class PPGameModeManager : MonoBehaviourPunCallbacks
         FriendsJoinRoom.onClick.AddListener(JoinFriendsRoom);
         BackButton.onClick.AddListener(OnClickBackButton);
         CloseRoomButton.onClick.AddListener(OnClickLeaveRoom);
+        PauseButton.onClick.AddListener(UIManager.Instance.PauseGame);
+        ResumeButton.onClick.AddListener(UIManager.Instance.ResumeGame);
+        HomeButton.onClick.AddListener(UIManager.Instance.ReturnToHome);
+        RestartButton.onClick.AddListener(UIManager.Instance.RestartGame);
+
         if (PhotonNetwork.IsConnectedAndReady)
         {
             LoadingPanel.SetActive(false);
         }
+    }
+
+    private void OnDestroy()
+    {
+        Friend.onClick.RemoveListener(OnClickFriendsName);
+        PassNPlay.onClick.RemoveListener(OnClickPassNPlay);
+        Online.onClick.RemoveListener(OnClickOnlineMode);
+        FriendsCreateRoom.onClick.RemoveListener(CreateFriendsRoom);
+        FriendsJoinRoom.onClick.RemoveListener(JoinFriendsRoom);
+        BackButton.onClick.RemoveListener(OnClickBackButton);
+        CloseRoomButton.onClick.RemoveListener(OnClickLeaveRoom);
+        PauseButton.onClick.RemoveListener(UIManager.Instance.PauseGame);
+        ResumeButton.onClick.RemoveListener(UIManager.Instance.ResumeGame);
+        HomeButton.onClick.RemoveListener(UIManager.Instance.ReturnToHome);
+        RestartButton.onClick.RemoveListener(UIManager.Instance.RestartGame);
     }
 
     private RoomOptions SetRoomProps()
@@ -204,7 +226,9 @@ public class PPGameModeManager : MonoBehaviourPunCallbacks
     public override void OnCreatedRoom()
     {
         Debug.Log("Room created " + PhotonNetwork.IsMasterClient);
+        CloseRoomButton.gameObject.SetActive(true);
     }
+
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
         Debug.Log($".. {returnCode} .. {message}");

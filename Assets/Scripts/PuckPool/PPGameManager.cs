@@ -11,6 +11,7 @@ public class PPGameManager : MonoBehaviourPunCallbacks
     public Vector2[] OpponentSpawnPoints;
     [SerializeField] private GameObject Striker;
     [SerializeField] private GameObject OppoStriker;
+    [SerializeField] private PhotonView view;
     public bool IsGreen;
     public bool IsPassNPlay;
     public static PPGameManager Instance;
@@ -84,32 +85,76 @@ public class PPGameManager : MonoBehaviourPunCallbacks
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Strikers"))
+        if (IsPassNPlay)
         {
-            if (collision.transform.position.y > 0 && !_strikerList.Contains(collision.gameObject.name))
+            if (collision.CompareTag("Strikers"))
             {
-                _strikerList.Add(collision.gameObject.name);
-                ScoreController.Instance.Player1Scored(_strikerList.Count);
+                if (collision.transform.position.x < 0 && !_strikerList.Contains(collision.gameObject.name))
+                {
+                    _strikerList.Add(collision.gameObject.name);
+                    ScoreController.Instance.Player1Scored(_strikerList.Count);
+                }
+                else if (collision.transform.position.x > 0 && _strikerList.Contains(collision.gameObject.name))
+                {
+                    _strikerList.Remove(collision.gameObject.name);
+                    ScoreController.Instance.Player1Scored(_strikerList.Count);
+                }
+
             }
-            else if (collision.transform.position.y < 0 && _strikerList.Contains(collision.gameObject.name))
+            else if (collision.CompareTag("OppoStrikers"))
             {
-                _strikerList.Remove(collision.gameObject.name);
-                ScoreController.Instance.Player1Scored(_strikerList.Count);
+                if (collision.transform.position.x > 0 && !_oppoStrikerList.Contains(collision.gameObject.name))
+                {
+                    _oppoStrikerList.Add(collision.gameObject.name);
+                    ScoreController.Instance.Player2Scored(_oppoStrikerList.Count);
+                }
+                else if (collision.transform.position.x < 0 && _oppoStrikerList.Contains(collision.gameObject.name))
+                {
+                    _oppoStrikerList.Remove(collision.gameObject.name);
+                    ScoreController.Instance.Player2Scored(_oppoStrikerList.Count);
+                }
             }
 
         }
-        else if (collision.CompareTag("OppoStrikers"))
+        else
         {
-            if (collision.transform.position.y < 0 && !_oppoStrikerList.Contains(collision.gameObject.name))
+            if (view.IsMine)
             {
-                _oppoStrikerList.Add(collision.gameObject.name);
-                ScoreController.Instance.Player2Scored(_oppoStrikerList.Count);
+                if (collision.CompareTag("Strikers"))
+                    OnlineStrikerAddScore(collision);
+                else if (collision.CompareTag("OppoStrikers"))
+                    OnlineOpponentStrikerAddScore(collision);
             }
-            else if (collision.transform.position.y > 0 && _oppoStrikerList.Contains(collision.gameObject.name))
-            {
-                _oppoStrikerList.Remove(collision.gameObject.name);
-                ScoreController.Instance.Player2Scored(_oppoStrikerList.Count);
-            }
+        }
+    }
+
+    private void OnlineStrikerAddScore(Collider2D collision)
+    {
+
+        if (collision.transform.position.x < 0 && !_strikerList.Contains(collision.gameObject.name))
+        {
+            _strikerList.Add(collision.gameObject.name);
+            ScoreController.Instance.Player1Scored(_strikerList.Count);
+        }
+        else if (collision.transform.position.x > 0 && _strikerList.Contains(collision.gameObject.name))
+        {
+            _strikerList.Remove(collision.gameObject.name);
+            ScoreController.Instance.Player1Scored(_strikerList.Count);
+        }
+    }
+
+    private void OnlineOpponentStrikerAddScore(Collider2D collision)
+    {
+
+        if (collision.transform.position.x > 0 && !_oppoStrikerList.Contains(collision.gameObject.name))
+        {
+            _oppoStrikerList.Add(collision.gameObject.name);
+            ScoreController.Instance.Player2Scored(_oppoStrikerList.Count);
+        }
+        else if (collision.transform.position.x < 0 && _oppoStrikerList.Contains(collision.gameObject.name))
+        {
+            _oppoStrikerList.Remove(collision.gameObject.name);
+            ScoreController.Instance.Player2Scored(_oppoStrikerList.Count);
         }
     }
 }

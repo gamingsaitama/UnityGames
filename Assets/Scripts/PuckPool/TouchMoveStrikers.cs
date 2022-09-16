@@ -66,15 +66,15 @@ public class TouchMoveStrikers : MonoBehaviour
                         TouchObjects touchObj = _touchObjects.Find(touch => touch.fingerID == t.fingerId);
                         TouchObjects opptouchObj = _opptouchObjects.Find(touch => touch.fingerID == t.fingerId);
 
-                        if (touchObj != null && touchObj.selectedItem.transform.position.y < -0.1 && touchObj.selectedItem.CompareTag("Strikers"))
+                        if (touchObj != null && touchObj.selectedItem.transform.position.x > -0.1 && touchObj.selectedItem.CompareTag("Strikers"))
                         {
-                            touchObj.selectedItem.transform.position = new Vector2(Mathf.Clamp(touches[t.fingerId].x, -1.78f, 1.78f),
-                                                            Mathf.Clamp(touches[t.fingerId].y, -3.54f, -0.6f));
+                            touchObj.selectedItem.transform.position = new Vector2(Mathf.Clamp(touches[t.fingerId].x, -0.01f, 5.7f),
+                                                            Mathf.Clamp(touches[t.fingerId].y, -3.28f, 3.28f));
                         }
-                        else if (opptouchObj != null && opptouchObj.selectedItem.transform.position.y > 0.1 && opptouchObj.selectedItem.CompareTag("OppoStrikers"))
+                        else if (opptouchObj != null && opptouchObj.selectedItem.transform.position.x < -0.9 && opptouchObj.selectedItem.CompareTag("OppoStrikers"))
                         {
-                            opptouchObj.selectedItem.transform.position = new Vector2(Mathf.Clamp(touches[t.fingerId].x, -1.78f, 1.78f),
-                                                       Mathf.Clamp(touches[t.fingerId].y, 0.6f, 3.54f));
+                            opptouchObj.selectedItem.transform.position = new Vector2(Mathf.Clamp(touches[t.fingerId].x, -5.7f, -0.09f),
+                                                       Mathf.Clamp(touches[t.fingerId].y, -3.28f, 3.28f));
                         }
                     }
                     else if (Input.GetTouch(t.fingerId).phase == TouchPhase.Ended || Input.GetTouch(t.fingerId).phase == TouchPhase.Canceled)
@@ -131,10 +131,10 @@ public class TouchMoveStrikers : MonoBehaviour
                         TouchObjects touchObj = _touchObjects.Find(touch => touch.fingerID == t.fingerId);
                         TouchObjects opptouchObj = _opptouchObjects.Find(touch => touch.fingerID == t.fingerId);
 
-                        if (touchObj != null && touchObj.selectedItem.transform.position.y < -0.1 && touchObj.selectedItem.CompareTag("Strikers"))
+                        if (touchObj != null && touchObj.selectedItem.transform.position.x > -0.1 && touchObj.selectedItem.CompareTag("Strikers"))
                         {
-                            touchObj.selectedItem.transform.position = new Vector2(Mathf.Clamp(touches[t.fingerId].x, -1.78f, 1.78f),
-                                                            Mathf.Clamp(touches[t.fingerId].y, -3.54f, -0.6f));
+                            touchObj.selectedItem.transform.position = new Vector2(Mathf.Clamp(touches[t.fingerId].x, -0.01f, 5.7f),
+                                                            Mathf.Clamp(touches[t.fingerId].y, -3.28f, 3.28f));
                         }
                     }
                     else if (Input.GetTouch(t.fingerId).phase == TouchPhase.Ended || Input.GetTouch(t.fingerId).phase == TouchPhase.Canceled)
@@ -183,10 +183,10 @@ public class TouchMoveStrikers : MonoBehaviour
                     {
                         TouchObjects touchObj = _touchObjects.Find(touch => touch.fingerID == t.fingerId);
                         TouchObjects opptouchObj = _opptouchObjects.Find(touch => touch.fingerID == t.fingerId);
-                        if (opptouchObj != null && opptouchObj.selectedItem.transform.position.y > 0.1 && opptouchObj.selectedItem.CompareTag("OppoStrikers"))
+                        if (opptouchObj != null && opptouchObj.selectedItem.transform.position.x < -0.9 && opptouchObj.selectedItem.CompareTag("OppoStrikers"))
                         {
-                            opptouchObj.selectedItem.transform.position = new Vector2(Mathf.Clamp(touches[t.fingerId].x, -1.78f, 1.78f),
-                                                       Mathf.Clamp(touches[t.fingerId].y, 0.6f, 3.54f));
+                            opptouchObj.selectedItem.transform.position = new Vector2(Mathf.Clamp(touches[t.fingerId].x, -5.7f, -0.09f),
+                                                       Mathf.Clamp(touches[t.fingerId].y, -3.28f, 3.28f));
                         }
                     }
                     else if (Input.GetTouch(t.fingerId).phase == TouchPhase.Ended || Input.GetTouch(t.fingerId).phase == TouchPhase.Canceled)
