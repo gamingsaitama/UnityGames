@@ -1,4 +1,4 @@
-﻿{
+{
     "GameData": [
         {
             "id": "4FE57207-903B-4E66-B316-BE37010CA3B4",
@@ -12,7 +12,7 @@
             "gameName": "Puck_Pool",
             "sceneName": "PuckPool",
             "iconpath": "GamesIcon/PuckPoolLogo",
-            "isGameInLandscape": false
+            "isGameInLandscape": true
         }
     ]
 }
